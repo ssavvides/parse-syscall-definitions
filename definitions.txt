@@ -1,0 +1,2550 @@
+#######################################################################
+#                                                                     #
+#  This is an example output of the parse_syscall_definitions.py      #
+#  program executed on a GNU/Linux 3.5.0-36-generic x86 machine.      #
+#  July-17-2013                                                       #
+#                                                                     #
+#######################################################################
+
+
+A total of 389 system call names were parsed.
+
+
+List of system call names:
+--------------------------
+_llseek
+_newselect
+_sysctl
+accept
+accept4
+access
+acct
+add_key
+adjtimex
+afs_syscall
+alarm
+alloc_hugepages
+bdflush
+bind
+break
+brk
+cacheflush
+capget
+capset
+chdir
+chmod
+chown
+chown32
+chroot
+clock_adjtime
+clock_getres
+clock_gettime
+clock_nanosleep
+clock_settime
+clone
+close
+connect
+creat
+create_module
+delete_module
+dup
+dup2
+dup3
+epoll_create
+epoll_create1
+epoll_ctl
+epoll_pwait
+epoll_wait
+eventfd
+eventfd2
+execve
+exit
+exit_group
+faccessat
+fadvise64
+fadvise64_64
+fallocate
+fanotify_init
+fanotify_mark
+fchdir
+fchmod
+fchmodat
+fchown
+fchown32
+fchownat
+fcntl
+fcntl64
+fdatasync
+fgetxattr
+flistxattr
+flock
+fork
+free_hugepages
+fremovexattr
+fsetxattr
+fstat
+fstat64
+fstatat64
+fstatfs
+fstatfs64
+fsync
+ftime
+ftruncate
+ftruncate64
+futex
+futimesat
+get_kernel_syms
+get_mempolicy
+get_robust_list
+get_thread_area
+getcpu
+getcwd
+getdents
+getdents64
+getegid
+getegid32
+geteuid
+geteuid32
+getgid
+getgid32
+getgroups
+getgroups32
+getitimer
+getpeername
+getpagesize
+getpgid
+getpgrp
+getpid
+getpmsg
+getppid
+getpriority
+getresgid
+getresgid32
+getresuid
+getresuid32
+getrlimit
+getrusage
+getsid
+getsockname
+getsockopt
+gettid
+gettimeofday
+getuid
+getuid32
+getxattr
+gtty
+idle
+init_module
+inotify_add_watch
+inotify_init
+inotify_init1
+inotify_rm_watch
+io_cancel
+io_destroy
+io_getevents
+io_setup
+io_submit
+ioctl
+ioperm
+iopl
+ioprio_get
+ioprio_set
+ipc
+kexec_load
+keyctl
+kill
+lchown
+lchown32
+lgetxattr
+link
+linkat
+listen
+listxattr
+llistxattr
+lock
+lookup_dcookie
+lremovexattr
+lseek
+lsetxattr
+lstat
+lstat64
+madvise
+madvise1
+mbind
+migrate_pages
+mincore
+mkdir
+mkdirat
+mknod
+mknodat
+mlock
+mlockall
+mmap
+mmap2
+modify_ldt
+mount
+move_pages
+mprotect
+mpx
+mq_getsetattr
+mq_notify
+mq_open
+mq_timedreceive
+mq_timedsend
+mq_unlink
+mremap
+msgctl
+msgget
+msgrcv
+msgsnd
+msync
+munlock
+munlockall
+munmap
+name_to_handle_at
+nanosleep
+nfsservctl
+nice
+oldfstat
+oldlstat
+oldolduname
+oldstat
+olduname
+open
+open_by_handle_at
+openat
+pause
+pciconfig_iobase
+pciconfig_read
+pciconfig_write
+perf_event_open
+personality
+phys
+pipe
+pipe2
+pivot_root
+poll
+ppoll
+prctl
+pread64
+preadv
+prlimit
+prof
+profil
+pselect6
+ptrace
+putpmsg
+pwrite64
+pwritev
+query_module
+quotactl
+read
+readahead
+readdir
+readlink
+readlinkat
+readv
+reboot
+recv
+recvfrom
+recvmsg
+recvmmsg
+remap_file_pages
+removexattr
+rename
+renameat
+request_key
+restart_syscall
+rmdir
+rt_sigaction
+rt_sigpending
+rt_sigprocmask
+rt_sigqueueinfo
+rt_sigreturn
+rt_sigsuspend
+rt_sigtimedwait
+rt_tgsigqueueinfo
+sched_get_priority_max
+sched_get_priority_min
+sched_getaffinity
+sched_getparam
+sched_getscheduler
+sched_rr_get_interval
+sched_setaffinity
+sched_setparam
+sched_setscheduler
+sched_yield
+security
+select
+semctl
+semget
+semop
+semtimedop
+send
+sendfile
+sendfile64
+sendmmsg
+sendmsg
+sendto
+set_mempolicy
+set_robust_list
+set_thread_area
+set_tid_address
+set_zone_reclaim
+setdomainname
+setfsgid
+setfsgid32
+setfsuid
+setfsuid32
+setgid
+setgid32
+setgroups
+setgroups32
+sethostname
+setitimer
+setns
+setpgid
+setpriority
+setregid
+setregid32
+setresgid
+setresgid32
+setresuid
+setresuid32
+setreuid
+setreuid32
+setrlimit
+setsid
+setsockopt
+settimeofday
+setuid
+setuid32
+setup
+setxattr
+sgetmask
+shmat
+shmctl
+shmdt
+shmget
+shutdown
+sigaction
+sigaltstack
+signal
+signalfd
+signalfd4
+sigpending
+sigprocmask
+sigreturn
+sigsuspend
+socket
+socketcall
+socketpair
+splice
+spu_create
+spu_run
+ssetmask
+stat
+stat64
+statfs
+statfs64
+stime
+stty
+subpage_prot
+swapoff
+swapon
+symlink
+symlinkat
+sync
+sync_file_range
+sync_file_range2
+syncfs
+sysfs
+sysinfo
+syslog
+tee
+tgkill
+time
+timer_create
+timer_delete
+timer_getoverrun
+timer_gettime
+timer_settime
+timerfd_create
+timerfd_gettime
+timerfd_settime
+times
+tkill
+truncate
+truncate64
+tuxcall
+ugetrlimit
+ulimit
+umask
+umount
+umount2
+uname
+unlink
+unlinkat
+unshare
+uselib
+ustat
+utime
+utimensat
+utimes
+vfork
+vhangup
+vm86old
+vmsplice
+vserver
+wait4
+waitid
+waitpid
+write
+writev
+
+
+List of system call definitions:
+--------------------------------
+Syscall Name: _llseek
+Definition:   int _llseek(unsigned int fd, unsigned long offset_high, unsigned long offset_low, loff_t *result, unsigned int whence)
+
+Syscall Name: _newselect
+Definition:   Definition not found in man page.
+
+Syscall Name: _sysctl
+Definition:   int _sysctl(struct __sysctl_args *args)
+
+Syscall Name: accept
+Definition:   int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+
+Syscall Name: accept4
+Definition:   int accept4(int sockfd, struct sockaddr *addr, socklen_t *addrlen, int flags)
+
+Syscall Name: access
+Definition:   int access(const char *pathname, int mode)
+
+Syscall Name: acct
+Definition:   int acct(const char *filename)
+
+Syscall Name: add_key
+Definition:   key_serial_t add_key(const char *type, const char *description, const void *payload, size_t plen, key_serial_t keyring)
+
+Syscall Name: adjtimex
+Definition:   int adjtimex(struct timex *buf)
+
+Syscall Name: afs_syscall
+Definition:   System call is Unimplemented
+
+Syscall Name: alarm
+Definition:   unsigned int alarm(unsigned int seconds)
+
+Syscall Name: alloc_hugepages
+Definition:   void* alloc_hugepages(int key, void *addr, size_t len, int prot, int flag)
+
+Syscall Name: bdflush
+Definition:   int bdflush(int func, long *address)
+
+Syscall Name: bind
+Definition:   int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+
+Syscall Name: break
+Definition:   System call is Unimplemented
+
+Syscall Name: brk
+Definition:   int brk(void *addr)
+
+Syscall Name: cacheflush
+Definition:   int cacheflush(char *addr, int nbytes, int cache)
+
+Syscall Name: capget
+Definition:   int capget(cap_user_header_t hdrp, cap_user_data_t datap)
+
+Syscall Name: capset
+Definition:   int capset(cap_user_header_t hdrp, const cap_user_data_t datap)
+
+Syscall Name: chdir
+Definition:   int chdir(const char *path)
+
+Syscall Name: chmod
+Definition:   int chmod(const char *path, mode_t mode)
+
+Syscall Name: chown
+Definition:   int chown(const char *path, uid_t owner, gid_t group)
+
+Syscall Name: chown32
+Definition:   int chown(const char *path, uid_t owner, gid_t group)
+
+Syscall Name: chroot
+Definition:   int chroot(const char *path)
+
+Syscall Name: clock_adjtime
+Definition:   No man entry found for this system call name.
+
+Syscall Name: clock_getres
+Definition:   int clock_getres(clockid_t clk_id, struct timespec *res)
+
+Syscall Name: clock_gettime
+Definition:   int clock_gettime(clockid_t clk_id, struct timespec *tp)
+
+Syscall Name: clock_nanosleep
+Definition:   int clock_nanosleep(clockid_t clock_id, int flags, const struct timespec *request, struct timespec *remain)
+
+Syscall Name: clock_settime
+Definition:   int clock_settime(clockid_t clk_id, const struct timespec *tp)
+
+Syscall Name: clone
+Definition:   int clone(int (*fn)(void *), void *child_stack, int flags, void *arg, ...)
+
+Syscall Name: close
+Definition:   int close(int fd)
+
+Syscall Name: connect
+Definition:   int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+
+Syscall Name: creat
+Definition:   int creat(const char *pathname, mode_t mode)
+
+Syscall Name: create_module
+Definition:   caddr_t create_module(const char *name, size_t size)
+
+Syscall Name: delete_module
+Definition:   int delete_module(const char *name)
+
+Syscall Name: dup
+Definition:   int dup(int oldfd)
+
+Syscall Name: dup2
+Definition:   int dup2(int oldfd, int newfd)
+
+Syscall Name: dup3
+Definition:   int dup3(int oldfd, int newfd, int flags)
+
+Syscall Name: epoll_create
+Definition:   int epoll_create(int size)
+
+Syscall Name: epoll_create1
+Definition:   int epoll_create1(int flags)
+
+Syscall Name: epoll_ctl
+Definition:   int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)
+
+Syscall Name: epoll_pwait
+Definition:   int epoll_pwait(int epfd, struct epoll_event *events, int maxevents, int timeout, const sigset_t *sigmask)
+
+Syscall Name: epoll_wait
+Definition:   int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout)
+
+Syscall Name: eventfd
+Definition:   int eventfd(unsigned int initval, int flags)
+
+Syscall Name: eventfd2
+Definition:   int eventfd(unsigned int initval, int flags)
+
+Syscall Name: execve
+Definition:   int execve(const char *filename, char *const argv[], char *const envp[])
+
+Syscall Name: exit
+Definition:   void exit(int status)
+
+Syscall Name: exit_group
+Definition:   void exit_group(int status)
+
+Syscall Name: faccessat
+Definition:   int faccessat(int dirfd, const char *pathname, int mode, int flags)
+
+Syscall Name: fadvise64
+Definition:   Definition not found in man page.
+
+Syscall Name: fadvise64_64
+Definition:   Definition not found in man page.
+
+Syscall Name: fallocate
+Definition:   int fallocate(int fd, int mode, off_t offset, off_t len)
+
+Syscall Name: fanotify_init
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fanotify_mark
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fchdir
+Definition:   int fchdir(int fd)
+
+Syscall Name: fchmod
+Definition:   int fchmod(int fd, mode_t mode)
+
+Syscall Name: fchmodat
+Definition:   int fchmodat(int dirfd, const char *pathname, mode_t mode, int flags)
+
+Syscall Name: fchown
+Definition:   int fchown(int fd, uid_t owner, gid_t group)
+
+Syscall Name: fchown32
+Definition:   int fchown(int fd, uid_t owner, gid_t group)
+
+Syscall Name: fchownat
+Definition:   int fchownat(int dirfd, const char *pathname, uid_t owner, gid_t group, int flags)
+
+Syscall Name: fcntl
+Definition:   int fcntl(int fd, int cmd, ...)
+
+Syscall Name: fcntl64
+Definition:   int fcntl(int fd, int cmd, ...)
+
+Syscall Name: fdatasync
+Definition:   int fdatasync(int fd)
+
+Syscall Name: fgetxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: flistxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: flock
+Definition:   int flock(int fd, int operation)
+
+Syscall Name: fork
+Definition:   pid_t fork()
+
+Syscall Name: free_hugepages
+Definition:   int free_hugepages(void *addr)
+
+Syscall Name: fremovexattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fsetxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fstat
+Definition:   int fstat(int fd, struct stat *buf)
+
+Syscall Name: fstat64
+Definition:   int fstat(int fd, struct stat *buf)
+
+Syscall Name: fstatat64
+Definition:   int fstatat(int dirfd, const char *pathname, struct stat *buf, int flags)
+
+Syscall Name: fstatfs
+Definition:   int fstatfs(int fd, struct statfs *buf)
+
+Syscall Name: fstatfs64
+Definition:   int fstatfs(int fd, struct statfs *buf)
+
+Syscall Name: fsync
+Definition:   int fsync(int fd)
+
+Syscall Name: ftime
+Definition:   System call is Unimplemented
+
+Syscall Name: ftruncate
+Definition:   int ftruncate(int fd, off_t length)
+
+Syscall Name: ftruncate64
+Definition:   int ftruncate(int fd, off_t length)
+
+Syscall Name: futex
+Definition:   int futex(int *uaddr, int op, int val, const struct timespec *timeout, int *uaddr2, int val3)
+
+Syscall Name: futimesat
+Definition:   int futimesat(int dirfd, const char *pathname, const struct timeval times[2])
+
+Syscall Name: get_kernel_syms
+Definition:   int get_kernel_syms(struct kernel_sym *table)
+
+Syscall Name: get_mempolicy
+Definition:   int get_mempolicy(int *mode, unsigned long *nodemask, unsigned long maxnode, unsigned long addr, unsigned long flags)
+
+Syscall Name: get_robust_list
+Definition:   No man entry found for this system call name.
+
+Syscall Name: get_thread_area
+Definition:   int get_thread_area(struct user_desc *u_info)
+
+Syscall Name: getcpu
+Definition:   int getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *tcache)
+
+Syscall Name: getcwd
+Definition:   char* getcwd(char *buf, size_t size)
+
+Syscall Name: getdents
+Definition:   int getdents(unsigned int fd, struct linux_dirent *dirp, unsigned int count)
+
+Syscall Name: getdents64
+Definition:   int getdents(unsigned int fd, struct linux_dirent *dirp, unsigned int count)
+
+Syscall Name: getegid
+Definition:   gid_t getegid()
+
+Syscall Name: getegid32
+Definition:   gid_t getegid()
+
+Syscall Name: geteuid
+Definition:   uid_t geteuid()
+
+Syscall Name: geteuid32
+Definition:   uid_t geteuid()
+
+Syscall Name: getgid
+Definition:   gid_t getgid()
+
+Syscall Name: getgid32
+Definition:   gid_t getgid()
+
+Syscall Name: getgroups
+Definition:   int getgroups(int size, gid_t list[])
+
+Syscall Name: getgroups32
+Definition:   int getgroups(int size, gid_t list[])
+
+Syscall Name: getitimer
+Definition:   int getitimer(int which, struct itimerval *curr_value)
+
+Syscall Name: getpeername
+Definition:   int getpeername(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+
+Syscall Name: getpagesize
+Definition:   int getpagesize()
+
+Syscall Name: getpgid
+Definition:   pid_t getpgid(pid_t pid)
+
+Syscall Name: getpgrp
+Definition:   pid_t getpgrp(pid_t pid)
+
+Syscall Name: getpid
+Definition:   pid_t getpid()
+
+Syscall Name: getpmsg
+Definition:   System call is Unimplemented
+
+Syscall Name: getppid
+Definition:   pid_t getppid()
+
+Syscall Name: getpriority
+Definition:   int getpriority(int which, int who)
+
+Syscall Name: getresgid
+Definition:   int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid)
+
+Syscall Name: getresgid32
+Definition:   int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid)
+
+Syscall Name: getresuid
+Definition:   int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid)
+
+Syscall Name: getresuid32
+Definition:   int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid)
+
+Syscall Name: getrlimit
+Definition:   int getrlimit(int resource, struct rlimit *rlim)
+
+Syscall Name: getrusage
+Definition:   int getrusage(int who, struct rusage *usage)
+
+Syscall Name: getsid
+Definition:   pid_t getsid(pid_t pid)
+
+Syscall Name: getsockname
+Definition:   int getsockname(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+
+Syscall Name: getsockopt
+Definition:   int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen)
+
+Syscall Name: gettid
+Definition:   pid_t gettid()
+
+Syscall Name: gettimeofday
+Definition:   int gettimeofday(struct timeval *tv, struct timezone *tz)
+
+Syscall Name: getuid
+Definition:   uid_t getuid()
+
+Syscall Name: getuid32
+Definition:   uid_t getuid()
+
+Syscall Name: getxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: gtty
+Definition:   System call is Unimplemented
+
+Syscall Name: idle
+Definition:   int idle()
+
+Syscall Name: init_module
+Definition:   int init_module(const char *name, struct module *image)
+
+Syscall Name: inotify_add_watch
+Definition:   int inotify_add_watch(int fd, const char *pathname, uint32_t mask)
+
+Syscall Name: inotify_init
+Definition:   int inotify_init()
+
+Syscall Name: inotify_init1
+Definition:   int inotify_init1(int flags)
+
+Syscall Name: inotify_rm_watch
+Definition:   int inotify_rm_watch(int fd, int wd)
+
+Syscall Name: io_cancel
+Definition:   int io_cancel(aio_context_t ctx_id, struct iocb *iocb, struct io_event *result)
+
+Syscall Name: io_destroy
+Definition:   int io_destroy(aio_context_t ctx)
+
+Syscall Name: io_getevents
+Definition:   int io_getevents(aio_context_t ctx_id, long min_nr, long nr, struct io_event *events, struct timespec *timeout)
+
+Syscall Name: io_setup
+Definition:   int io_setup(unsigned nr_events, aio_context_t *ctxp)
+
+Syscall Name: io_submit
+Definition:   int io_submit(aio_context_t ctx_id, long nr, struct iocb **iocbpp)
+
+Syscall Name: ioctl
+Definition:   int ioctl(int d, int request, ...)
+
+Syscall Name: ioperm
+Definition:   int ioperm(unsigned long from, unsigned long num, int turn_on)
+
+Syscall Name: iopl
+Definition:   int iopl(int level)
+
+Syscall Name: ioprio_get
+Definition:   int ioprio_get(int which, int who)
+
+Syscall Name: ioprio_set
+Definition:   int ioprio_set(int which, int who, int ioprio)
+
+Syscall Name: ipc
+Definition:   int ipc(unsigned int call, int first, int second, int third, void *ptr, long fifth)
+
+Syscall Name: kexec_load
+Definition:   long kexec_load(unsigned long entry, unsigned long nr_segments, struct kexec_segment *segments, unsigned long flags)
+
+Syscall Name: keyctl
+Definition:   long keyctl(int cmd, ...)
+
+Syscall Name: kill
+Definition:   int kill(pid_t pid, int sig)
+
+Syscall Name: lchown
+Definition:   int lchown(const char *path, uid_t owner, gid_t group)
+
+Syscall Name: lchown32
+Definition:   int lchown(const char *path, uid_t owner, gid_t group)
+
+Syscall Name: lgetxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: link
+Definition:   int link(const char *oldpath, const char *newpath)
+
+Syscall Name: linkat
+Definition:   int linkat(int olddirfd, const char *oldpath, int newdirfd, const char *newpath, int flags)
+
+Syscall Name: listen
+Definition:   int listen(int sockfd, int backlog)
+
+Syscall Name: listxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: llistxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: lock
+Definition:   System call is Unimplemented
+
+Syscall Name: lookup_dcookie
+Definition:   int lookup_dcookie(u64 cookie, char *buffer, size_t len)
+
+Syscall Name: lremovexattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: lseek
+Definition:   off_t lseek(int fd, off_t offset, int whence)
+
+Syscall Name: lsetxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: lstat
+Definition:   int lstat(const char *path, struct stat *buf)
+
+Syscall Name: lstat64
+Definition:   int lstat(const char *path, struct stat *buf)
+
+Syscall Name: madvise
+Definition:   int madvise(void *addr, size_t length, int advice)
+
+Syscall Name: madvise1
+Definition:   System call is Unimplemented
+
+Syscall Name: mbind
+Definition:   int mbind(void *addr, unsigned long len, int mode, unsigned long *nodemask, unsigned long maxnode, unsigned flags)
+
+Syscall Name: migrate_pages
+Definition:   long migrate_pages(int pid, unsigned long maxnode, const unsigned long *old_nodes, const unsigned long *new_nodes)
+
+Syscall Name: mincore
+Definition:   int mincore(void *addr, size_t length, unsigned char *vec)
+
+Syscall Name: mkdir
+Definition:   int mkdir(const char *pathname, mode_t mode)
+
+Syscall Name: mkdirat
+Definition:   int mkdirat(int dirfd, const char *pathname, mode_t mode)
+
+Syscall Name: mknod
+Definition:   int mknod(const char *pathname, mode_t mode, dev_t dev)
+
+Syscall Name: mknodat
+Definition:   int mknodat(int dirfd, const char *pathname, mode_t mode, dev_t dev)
+
+Syscall Name: mlock
+Definition:   int mlock(const void *addr, size_t len)
+
+Syscall Name: mlockall
+Definition:   int mlockall(int flags)
+
+Syscall Name: mmap
+Definition:   void* mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)
+
+Syscall Name: mmap2
+Definition:   void* mmap2(void *addr, size_t length, int prot, int flags, int fd, off_t pgoffset)
+
+Syscall Name: modify_ldt
+Definition:   int modify_ldt(int func, void *ptr, unsigned long bytecount)
+
+Syscall Name: mount
+Definition:   int mount(const char *source, const char *target, const char *filesystemtype, unsigned long mountflags, const void *data)
+
+Syscall Name: move_pages
+Definition:   long move_pages(int pid, unsigned long count, void **pages, const int *nodes, int *status, int flags)
+
+Syscall Name: mprotect
+Definition:   int mprotect(const void *addr, size_t len, int prot)
+
+Syscall Name: mpx
+Definition:   System call is Unimplemented
+
+Syscall Name: mq_getsetattr
+Definition:   int mq_getsetattr(mqd_t mqdes, struct mq_attr *newattr, struct mq_attr *oldattr)
+
+Syscall Name: mq_notify
+Definition:   int mq_notify(mqd_t mqdes, const struct sigevent *sevp)
+
+Syscall Name: mq_open
+Definition:   mqd_t mq_open(const char *name, int oflag, mode_t mode, struct mq_attr *attr)
+
+Syscall Name: mq_timedreceive
+Definition:   ssize_t mq_timedreceive(mqd_t mqdes, char *msg_ptr, size_t msg_len, unsigned *msg_prio, const struct timespec *abs_timeout)
+
+Syscall Name: mq_timedsend
+Definition:   int mq_timedsend(mqd_t mqdes, const char *msg_ptr, size_t msg_len, unsigned msg_prio, const struct timespec *abs_timeout)
+
+Syscall Name: mq_unlink
+Definition:   int mq_unlink(const char *name)
+
+Syscall Name: mremap
+Definition:   void* mremap(void *old_address, size_t old_size, size_t new_size, int flags, ...)
+
+Syscall Name: msgctl
+Definition:   int msgctl(int msqid, int cmd, struct msqid_ds *buf)
+
+Syscall Name: msgget
+Definition:   int msgget(key_t key, int msgflg)
+
+Syscall Name: msgrcv
+Definition:   ssize_t msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg)
+
+Syscall Name: msgsnd
+Definition:   int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)
+
+Syscall Name: msync
+Definition:   int msync(void *addr, size_t length, int flags)
+
+Syscall Name: munlock
+Definition:   int munlock(const void *addr, size_t len)
+
+Syscall Name: munlockall
+Definition:   int munlockall()
+
+Syscall Name: munmap
+Definition:   int munmap(void *addr, size_t length)
+
+Syscall Name: name_to_handle_at
+Definition:   No man entry found for this system call name.
+
+Syscall Name: nanosleep
+Definition:   int nanosleep(const struct timespec *req, struct timespec *rem)
+
+Syscall Name: nfsservctl
+Definition:   long nfsservctl(int cmd, struct nfsctl_arg *argp, union nfsctl_res *resp)
+
+Syscall Name: nice
+Definition:   int nice(int inc)
+
+Syscall Name: oldfstat
+Definition:   Definition not found in man page.
+
+Syscall Name: oldlstat
+Definition:   Definition not found in man page.
+
+Syscall Name: oldolduname
+Definition:   Definition not found in man page.
+
+Syscall Name: oldstat
+Definition:   Definition not found in man page.
+
+Syscall Name: olduname
+Definition:   Definition not found in man page.
+
+Syscall Name: open
+Definition:   int open(const char *pathname, int flags, mode_t mode)
+
+Syscall Name: open_by_handle_at
+Definition:   No man entry found for this system call name.
+
+Syscall Name: openat
+Definition:   int openat(int dirfd, const char *pathname, int flags, mode_t mode)
+
+Syscall Name: pause
+Definition:   int pause()
+
+Syscall Name: pciconfig_iobase
+Definition:   int pciconfig_iobase(long which, unsigned long bus, unsigned long devfn)
+
+Syscall Name: pciconfig_read
+Definition:   int pciconfig_read(unsigned long bus, unsigned long dfn, unsigned long off, unsigned long len, void *buf)
+
+Syscall Name: pciconfig_write
+Definition:   int pciconfig_write(unsigned long bus, unsigned long dfn, unsigned long off, unsigned long len, void *buf)
+
+Syscall Name: perf_event_open
+Definition:   No man entry found for this system call name.
+
+Syscall Name: personality
+Definition:   int personality(unsigned long persona)
+
+Syscall Name: phys
+Definition:   No man entry found for this system call name.
+
+Syscall Name: pipe
+Definition:   int pipe(int pipefd[2])
+
+Syscall Name: pipe2
+Definition:   int pipe2(int pipefd[2], int flags)
+
+Syscall Name: pivot_root
+Definition:   int pivot_root(const char *new_root, const char *put_old)
+
+Syscall Name: poll
+Definition:   int poll(struct pollfd *fds, nfds_t nfds, int timeout)
+
+Syscall Name: ppoll
+Definition:   int ppoll(struct pollfd *fds, nfds_t nfds, const struct timespec *timeout_ts, const sigset_t *sigmask)
+
+Syscall Name: prctl
+Definition:   int prctl(int option, unsigned long arg2, unsigned long arg3, unsigned long arg4, unsigned long arg5)
+
+Syscall Name: pread64
+Definition:   ssize_t pread(int fd, void *buf, size_t count, off_t offset)
+
+Syscall Name: preadv
+Definition:   ssize_t preadv(int fd, const struct iovec *iov, int iovcnt, off_t offset)
+
+Syscall Name: prlimit
+Definition:   int prlimit(pid_t pid, int resource, const struct rlimit *new_limit, struct rlimit *old_limit)
+
+Syscall Name: prof
+Definition:   System call is Unimplemented
+
+Syscall Name: profil
+Definition:   System call is Unimplemented
+
+Syscall Name: pselect6
+Definition:   int pselect(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, const struct timespec *timeout, const sigset_t *sigmask)
+
+Syscall Name: ptrace
+Definition:   long ptrace(enum __ptrace_request request, pid_t pid, void *addr, void *data)
+
+Syscall Name: putpmsg
+Definition:   System call is Unimplemented
+
+Syscall Name: pwrite64
+Definition:   ssize_t pwrite(int fd, const void *buf, size_t count, off_t offset)
+
+Syscall Name: pwritev
+Definition:   ssize_t pwritev(int fd, const struct iovec *iov, int iovcnt, off_t offset)
+
+Syscall Name: query_module
+Definition:   No man entry found for this system call name.
+
+Syscall Name: quotactl
+Definition:   int quotactl(int cmd, const char *special, int id, caddr_t addr)
+
+Syscall Name: read
+Definition:   ssize_t read(int fd, void *buf, size_t count)
+
+Syscall Name: readahead
+Definition:   ssize_t readahead(int fd, off64_t offset, size_t count)
+
+Syscall Name: readdir
+Definition:   int readdir(unsigned int fd, struct old_linux_dirent *dirp, unsigned int count)
+
+Syscall Name: readlink
+Definition:   ssize_t readlink(const char *path, char *buf, size_t bufsiz)
+
+Syscall Name: readlinkat
+Definition:   int readlinkat(int dirfd, const char *pathname, char *buf, size_t bufsiz)
+
+Syscall Name: readv
+Definition:   ssize_t readv(int fd, const struct iovec *iov, int iovcnt)
+
+Syscall Name: reboot
+Definition:   int reboot(int magic, int magic2, int cmd, void *arg)
+
+Syscall Name: recv
+Definition:   ssize_t recv(int sockfd, void *buf, size_t len, int flags)
+
+Syscall Name: recvfrom
+Definition:   ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *src_addr, socklen_t *addrlen)
+
+Syscall Name: recvmsg
+Definition:   ssize_t recvmsg(int sockfd, struct msghdr *msg, int flags)
+
+Syscall Name: recvmmsg
+Definition:   int recvmmsg(int sockfd, struct mmsghdr *msgvec, unsigned int vlen, unsigned int flags, struct timespec *timeout)
+
+Syscall Name: remap_file_pages
+Definition:   int remap_file_pages(void *addr, size_t size, int prot, ssize_t pgoff, int flags)
+
+Syscall Name: removexattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: rename
+Definition:   int rename(const char *oldpath, const char *newpath)
+
+Syscall Name: renameat
+Definition:   int renameat(int olddirfd, const char *oldpath, int newdirfd, const char *newpath)
+
+Syscall Name: request_key
+Definition:   key_serial_t request_key(const char *type, const char *description, const char *callout_info, key_serial_t keyring)
+
+Syscall Name: restart_syscall
+Definition:   No man entry found for this system call name.
+
+Syscall Name: rmdir
+Definition:   int rmdir(const char *pathname)
+
+Syscall Name: rt_sigaction
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigpending
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigprocmask
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigqueueinfo
+Definition:   int rt_sigqueueinfo(pid_t tgid, int sig, siginfo_t *uinfo)
+
+Syscall Name: rt_sigreturn
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigsuspend
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigtimedwait
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_tgsigqueueinfo
+Definition:   int rt_tgsigqueueinfo(pid_t tgid, pid_t tid, int sig, siginfo_t *uinfo)
+
+Syscall Name: sched_get_priority_max
+Definition:   int sched_get_priority_max(int policy)
+
+Syscall Name: sched_get_priority_min
+Definition:   int sched_get_priority_min(int policy)
+
+Syscall Name: sched_getaffinity
+Definition:   int sched_getaffinity(pid_t pid, size_t cpusetsize, cpu_set_t *mask)
+
+Syscall Name: sched_getparam
+Definition:   int sched_getparam(pid_t pid, struct sched_param *param)
+
+Syscall Name: sched_getscheduler
+Definition:   int sched_getscheduler(pid_t pid)
+
+Syscall Name: sched_rr_get_interval
+Definition:   int sched_rr_get_interval(pid_t pid, struct timespec *tp)
+
+Syscall Name: sched_setaffinity
+Definition:   int sched_setaffinity(pid_t pid, size_t cpusetsize, cpu_set_t *mask)
+
+Syscall Name: sched_setparam
+Definition:   int sched_setparam(pid_t pid, const struct sched_param *param)
+
+Syscall Name: sched_setscheduler
+Definition:   int sched_setscheduler(pid_t pid, int policy, const struct sched_param *param)
+
+Syscall Name: sched_yield
+Definition:   int sched_yield()
+
+Syscall Name: security
+Definition:   System call is Unimplemented
+
+Syscall Name: select
+Definition:   int select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)
+
+Syscall Name: semctl
+Definition:   int semctl(int semid, int semnum, int cmd, ...)
+
+Syscall Name: semget
+Definition:   int semget(key_t key, int nsems, int semflg)
+
+Syscall Name: semop
+Definition:   int semop(int semid, struct sembuf *sops, unsigned nsops)
+
+Syscall Name: semtimedop
+Definition:   int semtimedop(int semid, struct sembuf *sops, unsigned nsops, struct timespec *timeout)
+
+Syscall Name: send
+Definition:   ssize_t send(int sockfd, const void *buf, size_t len, int flags)
+
+Syscall Name: sendfile
+Definition:   ssize_t sendfile(int out_fd, int in_fd, off_t *offset, size_t count)
+
+Syscall Name: sendfile64
+Definition:   ssize_t sendfile(int out_fd, int in_fd, off_t *offset, size_t count)
+
+Syscall Name: sendmmsg
+Definition:   No man entry found for this system call name.
+
+Syscall Name: sendmsg
+Definition:   ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags)
+
+Syscall Name: sendto
+Definition:   ssize_t sendto(int sockfd, const void *buf, size_t len, int flags, const struct sockaddr *dest_addr, socklen_t addrlen)
+
+Syscall Name: set_mempolicy
+Definition:   No man entry found for this system call name.
+
+Syscall Name: set_robust_list
+Definition:   No man entry found for this system call name.
+
+Syscall Name: set_thread_area
+Definition:   int set_thread_area(struct user_desc *u_info)
+
+Syscall Name: set_tid_address
+Definition:   long set_tid_address(int *tidptr)
+
+Syscall Name: set_zone_reclaim
+Definition:   No man entry found for this system call name.
+
+Syscall Name: setdomainname
+Definition:   int setdomainname(const char *name, size_t len)
+
+Syscall Name: setfsgid
+Definition:   int setfsgid(uid_t fsgid)
+
+Syscall Name: setfsgid32
+Definition:   int setfsgid(uid_t fsgid)
+
+Syscall Name: setfsuid
+Definition:   int setfsuid(uid_t fsuid)
+
+Syscall Name: setfsuid32
+Definition:   int setfsuid(uid_t fsuid)
+
+Syscall Name: setgid
+Definition:   int setgid(gid_t gid)
+
+Syscall Name: setgid32
+Definition:   int setgid(gid_t gid)
+
+Syscall Name: setgroups
+Definition:   int setgroups(size_t size, const gid_t *list)
+
+Syscall Name: setgroups32
+Definition:   int setgroups(size_t size, const gid_t *list)
+
+Syscall Name: sethostname
+Definition:   int sethostname(const char *name, size_t len)
+
+Syscall Name: setitimer
+Definition:   int setitimer(int which, const struct itimerval *new_value, struct itimerval *old_value)
+
+Syscall Name: setns
+Definition:   int setns(int fd, int nstype)
+
+Syscall Name: setpgid
+Definition:   int setpgid(pid_t pid, pid_t pgid)
+
+Syscall Name: setpriority
+Definition:   int setpriority(int which, int who, int prio)
+
+Syscall Name: setregid
+Definition:   int setregid(gid_t rgid, gid_t egid)
+
+Syscall Name: setregid32
+Definition:   int setregid(gid_t rgid, gid_t egid)
+
+Syscall Name: setresgid
+Definition:   int setresgid(gid_t rgid, gid_t egid, gid_t sgid)
+
+Syscall Name: setresgid32
+Definition:   int setresgid(gid_t rgid, gid_t egid, gid_t sgid)
+
+Syscall Name: setresuid
+Definition:   int setresuid(uid_t ruid, uid_t euid, uid_t suid)
+
+Syscall Name: setresuid32
+Definition:   int setresuid(uid_t ruid, uid_t euid, uid_t suid)
+
+Syscall Name: setreuid
+Definition:   int setreuid(uid_t ruid, uid_t euid)
+
+Syscall Name: setreuid32
+Definition:   int setreuid(uid_t ruid, uid_t euid)
+
+Syscall Name: setrlimit
+Definition:   int setrlimit(int resource, const struct rlimit *rlim)
+
+Syscall Name: setsid
+Definition:   pid_t setsid()
+
+Syscall Name: setsockopt
+Definition:   int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen)
+
+Syscall Name: settimeofday
+Definition:   int settimeofday(const struct timeval *tv, const struct timezone *tz)
+
+Syscall Name: setuid
+Definition:   int setuid(uid_t uid)
+
+Syscall Name: setuid32
+Definition:   int setuid(uid_t uid)
+
+Syscall Name: setup
+Definition:   int setup()
+
+Syscall Name: setxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: sgetmask
+Definition:   long sgetmask()
+
+Syscall Name: shmat
+Definition:   void* shmat(int shmid, const void *shmaddr, int shmflg)
+
+Syscall Name: shmctl
+Definition:   int shmctl(int shmid, int cmd, struct shmid_ds *buf)
+
+Syscall Name: shmdt
+Definition:   int shmdt(const void *shmaddr)
+
+Syscall Name: shmget
+Definition:   int shmget(key_t key, size_t size, int shmflg)
+
+Syscall Name: shutdown
+Definition:   int shutdown(int sockfd, int how)
+
+Syscall Name: sigaction
+Definition:   int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
+
+Syscall Name: sigaltstack
+Definition:   int sigaltstack(const stack_t *ss, stack_t *oss)
+
+Syscall Name: signal
+Definition:   sighandler_t signal(int signum, sighandler_t handler)
+
+Syscall Name: signalfd
+Definition:   int signalfd(int fd, const sigset_t *mask, int flags)
+
+Syscall Name: signalfd4
+Definition:   int signalfd(int fd, const sigset_t *mask, int flags)
+
+Syscall Name: sigpending
+Definition:   int sigpending(sigset_t *set)
+
+Syscall Name: sigprocmask
+Definition:   int sigprocmask(int how, const sigset_t *set, sigset_t *oldset)
+
+Syscall Name: sigreturn
+Definition:   int sigreturn(unsigned long __unused)
+
+Syscall Name: sigsuspend
+Definition:   int sigsuspend(const sigset_t *mask)
+
+Syscall Name: socket
+Definition:   int socket(int domain, int type, int protocol)
+
+Syscall Name: socketcall
+Definition:   int socketcall(int call, unsigned long *args)
+
+Syscall Name: socketpair
+Definition:   int socketpair(int domain, int type, int protocol, int sv[2])
+
+Syscall Name: splice
+Definition:   ssize_t splice(int fd_in, loff_t *off_in, int fd_out, loff_t *off_out, size_t len, unsigned int flags)
+
+Syscall Name: spu_create
+Definition:   int spu_create(const char *pathname, int flags, mode_t mode, int neighbor_fd)
+
+Syscall Name: spu_run
+Definition:   int spu_run(int fd, unsigned int *npc, unsigned int *event)
+
+Syscall Name: ssetmask
+Definition:   long ssetmask(long newmask)
+
+Syscall Name: stat
+Definition:   int stat(const char *path, struct stat *buf)
+
+Syscall Name: stat64
+Definition:   int stat(const char *path, struct stat *buf)
+
+Syscall Name: statfs
+Definition:   int statfs(const char *path, struct statfs *buf)
+
+Syscall Name: statfs64
+Definition:   int statfs(const char *path, struct statfs *buf)
+
+Syscall Name: stime
+Definition:   int stime(time_t *t)
+
+Syscall Name: stty
+Definition:   System call is Unimplemented
+
+Syscall Name: subpage_prot
+Definition:   long subpage_prot(unsigned long addr, unsigned long len, uint32_t *map)
+
+Syscall Name: swapoff
+Definition:   int swapoff(const char *path)
+
+Syscall Name: swapon
+Definition:   int swapon(const char *path, int swapflags)
+
+Syscall Name: symlink
+Definition:   int symlink(const char *oldpath, const char *newpath)
+
+Syscall Name: symlinkat
+Definition:   int symlinkat(const char *oldpath, int newdirfd, const char *newpath)
+
+Syscall Name: sync
+Definition:   void sync()
+
+Syscall Name: sync_file_range
+Definition:   int sync_file_range(int fd, off64_t offset, off64_t nbytes, unsigned int flags)
+
+Syscall Name: sync_file_range2
+Definition:   int sync_file_range(int fd, off64_t offset, off64_t nbytes, unsigned int flags)
+
+Syscall Name: syncfs
+Definition:   void syncfs(int fd)
+
+Syscall Name: sysfs
+Definition:   int sysfs(int option, unsigned int fs_index, char *buf)
+
+Syscall Name: sysinfo
+Definition:   int sysinfo(struct sysinfo *info)
+
+Syscall Name: syslog
+Definition:   int syslog(int type, char *bufp, int len)
+
+Syscall Name: tee
+Definition:   ssize_t tee(int fd_in, int fd_out, size_t len, unsigned int flags)
+
+Syscall Name: tgkill
+Definition:   int tgkill(int tgid, int tid, int sig)
+
+Syscall Name: time
+Definition:   time_t time(time_t *t)
+
+Syscall Name: timer_create
+Definition:   int timer_create(clockid_t clockid, struct sigevent *sevp, timer_t *timerid)
+
+Syscall Name: timer_delete
+Definition:   int timer_delete(timer_t timerid)
+
+Syscall Name: timer_getoverrun
+Definition:   int timer_getoverrun(timer_t timerid)
+
+Syscall Name: timer_gettime
+Definition:   int timer_gettime(timer_t timerid, struct itimerspec *curr_value)
+
+Syscall Name: timer_settime
+Definition:   int timer_settime(timer_t timerid, int flags, const struct itimerspec *new_value, struct itimerspec *old_value)
+
+Syscall Name: timerfd_create
+Definition:   int timerfd_create(int clockid, int flags)
+
+Syscall Name: timerfd_gettime
+Definition:   int timerfd_gettime(int fd, struct itimerspec *curr_value)
+
+Syscall Name: timerfd_settime
+Definition:   int timerfd_settime(int fd, int flags, const struct itimerspec *new_value, struct itimerspec *old_value)
+
+Syscall Name: times
+Definition:   clock_t times(struct tms *buf)
+
+Syscall Name: tkill
+Definition:   int tkill(int tid, int sig)
+
+Syscall Name: truncate
+Definition:   int truncate(const char *path, off_t length)
+
+Syscall Name: truncate64
+Definition:   int truncate(const char *path, off_t length)
+
+Syscall Name: tuxcall
+Definition:   System call is Unimplemented
+
+Syscall Name: ugetrlimit
+Definition:   Definition not found in man page.
+
+Syscall Name: ulimit
+Definition:   System call is Unimplemented
+
+Syscall Name: umask
+Definition:   mode_t umask(mode_t mask)
+
+Syscall Name: umount
+Definition:   int umount(const char *target)
+
+Syscall Name: umount2
+Definition:   int umount2(const char *target, int flags)
+
+Syscall Name: uname
+Definition:   int uname(struct utsname *buf)
+
+Syscall Name: unlink
+Definition:   int unlink(const char *pathname)
+
+Syscall Name: unlinkat
+Definition:   int unlinkat(int dirfd, const char *pathname, int flags)
+
+Syscall Name: unshare
+Definition:   int unshare(int flags)
+
+Syscall Name: uselib
+Definition:   int uselib(const char *library)
+
+Syscall Name: ustat
+Definition:   int ustat(dev_t dev, struct ustat *ubuf)
+
+Syscall Name: utime
+Definition:   int utime(const char *filename, const struct utimbuf *times)
+
+Syscall Name: utimensat
+Definition:   int utimensat(int dirfd, const char *pathname, const struct timespec times[2], int flags)
+
+Syscall Name: utimes
+Definition:   int utimes(const char *filename, const struct timeval times[2])
+
+Syscall Name: vfork
+Definition:   pid_t vfork()
+
+Syscall Name: vhangup
+Definition:   int vhangup()
+
+Syscall Name: vm86old
+Definition:   int vm86old(struct vm86_struct *info)
+
+Syscall Name: vmsplice
+Definition:   ssize_t vmsplice(int fd, const struct iovec *iov, unsigned long nr_segs, unsigned int flags)
+
+Syscall Name: vserver
+Definition:   System call is Unimplemented
+
+Syscall Name: wait4
+Definition:   pid_t wait4(pid_t pid, int *status, int options, struct rusage *rusage)
+
+Syscall Name: waitid
+Definition:   int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options)
+
+Syscall Name: waitpid
+Definition:   pid_t waitpid(pid_t pid, int *status, int options)
+
+Syscall Name: write
+Definition:   ssize_t write(int fd, const void *buf, size_t count)
+
+Syscall Name: writev
+Definition:   ssize_t writev(int fd, const struct iovec *iov, int iovcnt)
+
+
+
+List of all syscall names for which a definition was found
+==========================================================
+int _llseek(unsigned int fd, unsigned long offset_high, unsigned long offset_low, loff_t *result, unsigned int whence)
+int _sysctl(struct __sysctl_args *args)
+int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+int accept4(int sockfd, struct sockaddr *addr, socklen_t *addrlen, int flags)
+int access(const char *pathname, int mode)
+int acct(const char *filename)
+key_serial_t add_key(const char *type, const char *description, const void *payload, size_t plen, key_serial_t keyring)
+int adjtimex(struct timex *buf)
+unsigned int alarm(unsigned int seconds)
+void* alloc_hugepages(int key, void *addr, size_t len, int prot, int flag)
+int bdflush(int func, long *address)
+int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+int brk(void *addr)
+int cacheflush(char *addr, int nbytes, int cache)
+int capget(cap_user_header_t hdrp, cap_user_data_t datap)
+int capset(cap_user_header_t hdrp, const cap_user_data_t datap)
+int chdir(const char *path)
+int chmod(const char *path, mode_t mode)
+int chown(const char *path, uid_t owner, gid_t group)
+int chown(const char *path, uid_t owner, gid_t group)
+int chroot(const char *path)
+int clock_getres(clockid_t clk_id, struct timespec *res)
+int clock_gettime(clockid_t clk_id, struct timespec *tp)
+int clock_nanosleep(clockid_t clock_id, int flags, const struct timespec *request, struct timespec *remain)
+int clock_settime(clockid_t clk_id, const struct timespec *tp)
+int clone(int (*fn)(void *), void *child_stack, int flags, void *arg, ...)
+int close(int fd)
+int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+int creat(const char *pathname, mode_t mode)
+caddr_t create_module(const char *name, size_t size)
+int delete_module(const char *name)
+int dup(int oldfd)
+int dup2(int oldfd, int newfd)
+int dup3(int oldfd, int newfd, int flags)
+int epoll_create(int size)
+int epoll_create1(int flags)
+int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)
+int epoll_pwait(int epfd, struct epoll_event *events, int maxevents, int timeout, const sigset_t *sigmask)
+int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout)
+int eventfd(unsigned int initval, int flags)
+int eventfd(unsigned int initval, int flags)
+int execve(const char *filename, char *const argv[], char *const envp[])
+void exit(int status)
+void exit_group(int status)
+int faccessat(int dirfd, const char *pathname, int mode, int flags)
+int fallocate(int fd, int mode, off_t offset, off_t len)
+int fchdir(int fd)
+int fchmod(int fd, mode_t mode)
+int fchmodat(int dirfd, const char *pathname, mode_t mode, int flags)
+int fchown(int fd, uid_t owner, gid_t group)
+int fchown(int fd, uid_t owner, gid_t group)
+int fchownat(int dirfd, const char *pathname, uid_t owner, gid_t group, int flags)
+int fcntl(int fd, int cmd, ...)
+int fcntl(int fd, int cmd, ...)
+int fdatasync(int fd)
+int flock(int fd, int operation)
+pid_t fork()
+int free_hugepages(void *addr)
+int fstat(int fd, struct stat *buf)
+int fstat(int fd, struct stat *buf)
+int fstatat(int dirfd, const char *pathname, struct stat *buf, int flags)
+int fstatfs(int fd, struct statfs *buf)
+int fstatfs(int fd, struct statfs *buf)
+int fsync(int fd)
+int ftruncate(int fd, off_t length)
+int ftruncate(int fd, off_t length)
+int futex(int *uaddr, int op, int val, const struct timespec *timeout, int *uaddr2, int val3)
+int futimesat(int dirfd, const char *pathname, const struct timeval times[2])
+int get_kernel_syms(struct kernel_sym *table)
+int get_mempolicy(int *mode, unsigned long *nodemask, unsigned long maxnode, unsigned long addr, unsigned long flags)
+int get_thread_area(struct user_desc *u_info)
+int getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *tcache)
+char* getcwd(char *buf, size_t size)
+int getdents(unsigned int fd, struct linux_dirent *dirp, unsigned int count)
+int getdents(unsigned int fd, struct linux_dirent *dirp, unsigned int count)
+gid_t getegid()
+gid_t getegid()
+uid_t geteuid()
+uid_t geteuid()
+gid_t getgid()
+gid_t getgid()
+int getgroups(int size, gid_t list[])
+int getgroups(int size, gid_t list[])
+int getitimer(int which, struct itimerval *curr_value)
+int getpeername(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+int getpagesize()
+pid_t getpgid(pid_t pid)
+pid_t getpgrp(pid_t pid)
+pid_t getpid()
+pid_t getppid()
+int getpriority(int which, int who)
+int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid)
+int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid)
+int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid)
+int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid)
+int getrlimit(int resource, struct rlimit *rlim)
+int getrusage(int who, struct rusage *usage)
+pid_t getsid(pid_t pid)
+int getsockname(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen)
+pid_t gettid()
+int gettimeofday(struct timeval *tv, struct timezone *tz)
+uid_t getuid()
+uid_t getuid()
+int idle()
+int init_module(const char *name, struct module *image)
+int inotify_add_watch(int fd, const char *pathname, uint32_t mask)
+int inotify_init()
+int inotify_init1(int flags)
+int inotify_rm_watch(int fd, int wd)
+int io_cancel(aio_context_t ctx_id, struct iocb *iocb, struct io_event *result)
+int io_destroy(aio_context_t ctx)
+int io_getevents(aio_context_t ctx_id, long min_nr, long nr, struct io_event *events, struct timespec *timeout)
+int io_setup(unsigned nr_events, aio_context_t *ctxp)
+int io_submit(aio_context_t ctx_id, long nr, struct iocb **iocbpp)
+int ioctl(int d, int request, ...)
+int ioperm(unsigned long from, unsigned long num, int turn_on)
+int iopl(int level)
+int ioprio_get(int which, int who)
+int ioprio_set(int which, int who, int ioprio)
+int ipc(unsigned int call, int first, int second, int third, void *ptr, long fifth)
+long kexec_load(unsigned long entry, unsigned long nr_segments, struct kexec_segment *segments, unsigned long flags)
+long keyctl(int cmd, ...)
+int kill(pid_t pid, int sig)
+int lchown(const char *path, uid_t owner, gid_t group)
+int lchown(const char *path, uid_t owner, gid_t group)
+int link(const char *oldpath, const char *newpath)
+int linkat(int olddirfd, const char *oldpath, int newdirfd, const char *newpath, int flags)
+int listen(int sockfd, int backlog)
+int lookup_dcookie(u64 cookie, char *buffer, size_t len)
+off_t lseek(int fd, off_t offset, int whence)
+int lstat(const char *path, struct stat *buf)
+int lstat(const char *path, struct stat *buf)
+int madvise(void *addr, size_t length, int advice)
+int mbind(void *addr, unsigned long len, int mode, unsigned long *nodemask, unsigned long maxnode, unsigned flags)
+long migrate_pages(int pid, unsigned long maxnode, const unsigned long *old_nodes, const unsigned long *new_nodes)
+int mincore(void *addr, size_t length, unsigned char *vec)
+int mkdir(const char *pathname, mode_t mode)
+int mkdirat(int dirfd, const char *pathname, mode_t mode)
+int mknod(const char *pathname, mode_t mode, dev_t dev)
+int mknodat(int dirfd, const char *pathname, mode_t mode, dev_t dev)
+int mlock(const void *addr, size_t len)
+int mlockall(int flags)
+void* mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)
+void* mmap2(void *addr, size_t length, int prot, int flags, int fd, off_t pgoffset)
+int modify_ldt(int func, void *ptr, unsigned long bytecount)
+int mount(const char *source, const char *target, const char *filesystemtype, unsigned long mountflags, const void *data)
+long move_pages(int pid, unsigned long count, void **pages, const int *nodes, int *status, int flags)
+int mprotect(const void *addr, size_t len, int prot)
+int mq_getsetattr(mqd_t mqdes, struct mq_attr *newattr, struct mq_attr *oldattr)
+int mq_notify(mqd_t mqdes, const struct sigevent *sevp)
+mqd_t mq_open(const char *name, int oflag, mode_t mode, struct mq_attr *attr)
+ssize_t mq_timedreceive(mqd_t mqdes, char *msg_ptr, size_t msg_len, unsigned *msg_prio, const struct timespec *abs_timeout)
+int mq_timedsend(mqd_t mqdes, const char *msg_ptr, size_t msg_len, unsigned msg_prio, const struct timespec *abs_timeout)
+int mq_unlink(const char *name)
+void* mremap(void *old_address, size_t old_size, size_t new_size, int flags, ...)
+int msgctl(int msqid, int cmd, struct msqid_ds *buf)
+int msgget(key_t key, int msgflg)
+ssize_t msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg)
+int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)
+int msync(void *addr, size_t length, int flags)
+int munlock(const void *addr, size_t len)
+int munlockall()
+int munmap(void *addr, size_t length)
+int nanosleep(const struct timespec *req, struct timespec *rem)
+long nfsservctl(int cmd, struct nfsctl_arg *argp, union nfsctl_res *resp)
+int nice(int inc)
+int open(const char *pathname, int flags, mode_t mode)
+int openat(int dirfd, const char *pathname, int flags, mode_t mode)
+int pause()
+int pciconfig_iobase(long which, unsigned long bus, unsigned long devfn)
+int pciconfig_read(unsigned long bus, unsigned long dfn, unsigned long off, unsigned long len, void *buf)
+int pciconfig_write(unsigned long bus, unsigned long dfn, unsigned long off, unsigned long len, void *buf)
+int personality(unsigned long persona)
+int pipe(int pipefd[2])
+int pipe2(int pipefd[2], int flags)
+int pivot_root(const char *new_root, const char *put_old)
+int poll(struct pollfd *fds, nfds_t nfds, int timeout)
+int ppoll(struct pollfd *fds, nfds_t nfds, const struct timespec *timeout_ts, const sigset_t *sigmask)
+int prctl(int option, unsigned long arg2, unsigned long arg3, unsigned long arg4, unsigned long arg5)
+ssize_t pread(int fd, void *buf, size_t count, off_t offset)
+ssize_t preadv(int fd, const struct iovec *iov, int iovcnt, off_t offset)
+int prlimit(pid_t pid, int resource, const struct rlimit *new_limit, struct rlimit *old_limit)
+int pselect(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, const struct timespec *timeout, const sigset_t *sigmask)
+long ptrace(enum __ptrace_request request, pid_t pid, void *addr, void *data)
+ssize_t pwrite(int fd, const void *buf, size_t count, off_t offset)
+ssize_t pwritev(int fd, const struct iovec *iov, int iovcnt, off_t offset)
+int quotactl(int cmd, const char *special, int id, caddr_t addr)
+ssize_t read(int fd, void *buf, size_t count)
+ssize_t readahead(int fd, off64_t offset, size_t count)
+int readdir(unsigned int fd, struct old_linux_dirent *dirp, unsigned int count)
+ssize_t readlink(const char *path, char *buf, size_t bufsiz)
+int readlinkat(int dirfd, const char *pathname, char *buf, size_t bufsiz)
+ssize_t readv(int fd, const struct iovec *iov, int iovcnt)
+int reboot(int magic, int magic2, int cmd, void *arg)
+ssize_t recv(int sockfd, void *buf, size_t len, int flags)
+ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *src_addr, socklen_t *addrlen)
+ssize_t recvmsg(int sockfd, struct msghdr *msg, int flags)
+int recvmmsg(int sockfd, struct mmsghdr *msgvec, unsigned int vlen, unsigned int flags, struct timespec *timeout)
+int remap_file_pages(void *addr, size_t size, int prot, ssize_t pgoff, int flags)
+int rename(const char *oldpath, const char *newpath)
+int renameat(int olddirfd, const char *oldpath, int newdirfd, const char *newpath)
+key_serial_t request_key(const char *type, const char *description, const char *callout_info, key_serial_t keyring)
+int rmdir(const char *pathname)
+int rt_sigqueueinfo(pid_t tgid, int sig, siginfo_t *uinfo)
+int rt_tgsigqueueinfo(pid_t tgid, pid_t tid, int sig, siginfo_t *uinfo)
+int sched_get_priority_max(int policy)
+int sched_get_priority_min(int policy)
+int sched_getaffinity(pid_t pid, size_t cpusetsize, cpu_set_t *mask)
+int sched_getparam(pid_t pid, struct sched_param *param)
+int sched_getscheduler(pid_t pid)
+int sched_rr_get_interval(pid_t pid, struct timespec *tp)
+int sched_setaffinity(pid_t pid, size_t cpusetsize, cpu_set_t *mask)
+int sched_setparam(pid_t pid, const struct sched_param *param)
+int sched_setscheduler(pid_t pid, int policy, const struct sched_param *param)
+int sched_yield()
+int select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)
+int semctl(int semid, int semnum, int cmd, ...)
+int semget(key_t key, int nsems, int semflg)
+int semop(int semid, struct sembuf *sops, unsigned nsops)
+int semtimedop(int semid, struct sembuf *sops, unsigned nsops, struct timespec *timeout)
+ssize_t send(int sockfd, const void *buf, size_t len, int flags)
+ssize_t sendfile(int out_fd, int in_fd, off_t *offset, size_t count)
+ssize_t sendfile(int out_fd, int in_fd, off_t *offset, size_t count)
+ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags)
+ssize_t sendto(int sockfd, const void *buf, size_t len, int flags, const struct sockaddr *dest_addr, socklen_t addrlen)
+int set_thread_area(struct user_desc *u_info)
+long set_tid_address(int *tidptr)
+int setdomainname(const char *name, size_t len)
+int setfsgid(uid_t fsgid)
+int setfsgid(uid_t fsgid)
+int setfsuid(uid_t fsuid)
+int setfsuid(uid_t fsuid)
+int setgid(gid_t gid)
+int setgid(gid_t gid)
+int setgroups(size_t size, const gid_t *list)
+int setgroups(size_t size, const gid_t *list)
+int sethostname(const char *name, size_t len)
+int setitimer(int which, const struct itimerval *new_value, struct itimerval *old_value)
+int setns(int fd, int nstype)
+int setpgid(pid_t pid, pid_t pgid)
+int setpriority(int which, int who, int prio)
+int setregid(gid_t rgid, gid_t egid)
+int setregid(gid_t rgid, gid_t egid)
+int setresgid(gid_t rgid, gid_t egid, gid_t sgid)
+int setresgid(gid_t rgid, gid_t egid, gid_t sgid)
+int setresuid(uid_t ruid, uid_t euid, uid_t suid)
+int setresuid(uid_t ruid, uid_t euid, uid_t suid)
+int setreuid(uid_t ruid, uid_t euid)
+int setreuid(uid_t ruid, uid_t euid)
+int setrlimit(int resource, const struct rlimit *rlim)
+pid_t setsid()
+int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen)
+int settimeofday(const struct timeval *tv, const struct timezone *tz)
+int setuid(uid_t uid)
+int setuid(uid_t uid)
+int setup()
+long sgetmask()
+void* shmat(int shmid, const void *shmaddr, int shmflg)
+int shmctl(int shmid, int cmd, struct shmid_ds *buf)
+int shmdt(const void *shmaddr)
+int shmget(key_t key, size_t size, int shmflg)
+int shutdown(int sockfd, int how)
+int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
+int sigaltstack(const stack_t *ss, stack_t *oss)
+sighandler_t signal(int signum, sighandler_t handler)
+int signalfd(int fd, const sigset_t *mask, int flags)
+int signalfd(int fd, const sigset_t *mask, int flags)
+int sigpending(sigset_t *set)
+int sigprocmask(int how, const sigset_t *set, sigset_t *oldset)
+int sigreturn(unsigned long __unused)
+int sigsuspend(const sigset_t *mask)
+int socket(int domain, int type, int protocol)
+int socketcall(int call, unsigned long *args)
+int socketpair(int domain, int type, int protocol, int sv[2])
+ssize_t splice(int fd_in, loff_t *off_in, int fd_out, loff_t *off_out, size_t len, unsigned int flags)
+int spu_create(const char *pathname, int flags, mode_t mode, int neighbor_fd)
+int spu_run(int fd, unsigned int *npc, unsigned int *event)
+long ssetmask(long newmask)
+int stat(const char *path, struct stat *buf)
+int stat(const char *path, struct stat *buf)
+int statfs(const char *path, struct statfs *buf)
+int statfs(const char *path, struct statfs *buf)
+int stime(time_t *t)
+long subpage_prot(unsigned long addr, unsigned long len, uint32_t *map)
+int swapoff(const char *path)
+int swapon(const char *path, int swapflags)
+int symlink(const char *oldpath, const char *newpath)
+int symlinkat(const char *oldpath, int newdirfd, const char *newpath)
+void sync()
+int sync_file_range(int fd, off64_t offset, off64_t nbytes, unsigned int flags)
+int sync_file_range(int fd, off64_t offset, off64_t nbytes, unsigned int flags)
+void syncfs(int fd)
+int sysfs(int option, unsigned int fs_index, char *buf)
+int sysinfo(struct sysinfo *info)
+int syslog(int type, char *bufp, int len)
+ssize_t tee(int fd_in, int fd_out, size_t len, unsigned int flags)
+int tgkill(int tgid, int tid, int sig)
+time_t time(time_t *t)
+int timer_create(clockid_t clockid, struct sigevent *sevp, timer_t *timerid)
+int timer_delete(timer_t timerid)
+int timer_getoverrun(timer_t timerid)
+int timer_gettime(timer_t timerid, struct itimerspec *curr_value)
+int timer_settime(timer_t timerid, int flags, const struct itimerspec *new_value, struct itimerspec *old_value)
+int timerfd_create(int clockid, int flags)
+int timerfd_gettime(int fd, struct itimerspec *curr_value)
+int timerfd_settime(int fd, int flags, const struct itimerspec *new_value, struct itimerspec *old_value)
+clock_t times(struct tms *buf)
+int tkill(int tid, int sig)
+int truncate(const char *path, off_t length)
+int truncate(const char *path, off_t length)
+mode_t umask(mode_t mask)
+int umount(const char *target)
+int umount2(const char *target, int flags)
+int uname(struct utsname *buf)
+int unlink(const char *pathname)
+int unlinkat(int dirfd, const char *pathname, int flags)
+int unshare(int flags)
+int uselib(const char *library)
+int ustat(dev_t dev, struct ustat *ubuf)
+int utime(const char *filename, const struct utimbuf *times)
+int utimensat(int dirfd, const char *pathname, const struct timespec times[2], int flags)
+int utimes(const char *filename, const struct timeval times[2])
+pid_t vfork()
+int vhangup()
+int vm86old(struct vm86_struct *info)
+ssize_t vmsplice(int fd, const struct iovec *iov, unsigned long nr_segs, unsigned int flags)
+pid_t wait4(pid_t pid, int *status, int options, struct rusage *rusage)
+int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options)
+pid_t waitpid(pid_t pid, int *status, int options)
+ssize_t write(int fd, const void *buf, size_t count)
+ssize_t writev(int fd, const struct iovec *iov, int iovcnt)
+
+
+List of all syscall names for which a definition was not found
+==============================================================
+_newselect
+afs_syscall
+break
+clock_adjtime
+fadvise64
+fadvise64_64
+fanotify_init
+fanotify_mark
+fgetxattr
+flistxattr
+fremovexattr
+fsetxattr
+ftime
+get_robust_list
+getpmsg
+getxattr
+gtty
+lgetxattr
+listxattr
+llistxattr
+lock
+lremovexattr
+lsetxattr
+madvise1
+mpx
+name_to_handle_at
+oldfstat
+oldlstat
+oldolduname
+oldstat
+olduname
+open_by_handle_at
+perf_event_open
+phys
+prof
+profil
+putpmsg
+query_module
+removexattr
+restart_syscall
+rt_sigaction
+rt_sigpending
+rt_sigprocmask
+rt_sigreturn
+rt_sigsuspend
+rt_sigtimedwait
+security
+sendmmsg
+set_mempolicy
+set_robust_list
+set_zone_reclaim
+setxattr
+stty
+tuxcall
+ugetrlimit
+ulimit
+vserver
+
+
+Names and the reason a system call definition was not found
+===========================================================
+Syscall Name: _newselect
+Definition:   Definition not found in man page.
+
+Syscall Name: afs_syscall
+Definition:   System call is Unimplemented
+
+Syscall Name: break
+Definition:   System call is Unimplemented
+
+Syscall Name: clock_adjtime
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fadvise64
+Definition:   Definition not found in man page.
+
+Syscall Name: fadvise64_64
+Definition:   Definition not found in man page.
+
+Syscall Name: fanotify_init
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fanotify_mark
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fgetxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: flistxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fremovexattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: fsetxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: ftime
+Definition:   System call is Unimplemented
+
+Syscall Name: get_robust_list
+Definition:   No man entry found for this system call name.
+
+Syscall Name: getpmsg
+Definition:   System call is Unimplemented
+
+Syscall Name: getxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: gtty
+Definition:   System call is Unimplemented
+
+Syscall Name: lgetxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: listxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: llistxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: lock
+Definition:   System call is Unimplemented
+
+Syscall Name: lremovexattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: lsetxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: madvise1
+Definition:   System call is Unimplemented
+
+Syscall Name: mpx
+Definition:   System call is Unimplemented
+
+Syscall Name: name_to_handle_at
+Definition:   No man entry found for this system call name.
+
+Syscall Name: oldfstat
+Definition:   Definition not found in man page.
+
+Syscall Name: oldlstat
+Definition:   Definition not found in man page.
+
+Syscall Name: oldolduname
+Definition:   Definition not found in man page.
+
+Syscall Name: oldstat
+Definition:   Definition not found in man page.
+
+Syscall Name: olduname
+Definition:   Definition not found in man page.
+
+Syscall Name: open_by_handle_at
+Definition:   No man entry found for this system call name.
+
+Syscall Name: perf_event_open
+Definition:   No man entry found for this system call name.
+
+Syscall Name: phys
+Definition:   No man entry found for this system call name.
+
+Syscall Name: prof
+Definition:   System call is Unimplemented
+
+Syscall Name: profil
+Definition:   System call is Unimplemented
+
+Syscall Name: putpmsg
+Definition:   System call is Unimplemented
+
+Syscall Name: query_module
+Definition:   No man entry found for this system call name.
+
+Syscall Name: removexattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: restart_syscall
+Definition:   No man entry found for this system call name.
+
+Syscall Name: rt_sigaction
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigpending
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigprocmask
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigreturn
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigsuspend
+Definition:   Definition not found in man page.
+
+Syscall Name: rt_sigtimedwait
+Definition:   Definition not found in man page.
+
+Syscall Name: security
+Definition:   System call is Unimplemented
+
+Syscall Name: sendmmsg
+Definition:   No man entry found for this system call name.
+
+Syscall Name: set_mempolicy
+Definition:   No man entry found for this system call name.
+
+Syscall Name: set_robust_list
+Definition:   No man entry found for this system call name.
+
+Syscall Name: set_zone_reclaim
+Definition:   No man entry found for this system call name.
+
+Syscall Name: setxattr
+Definition:   No man entry found for this system call name.
+
+Syscall Name: stty
+Definition:   System call is Unimplemented
+
+Syscall Name: tuxcall
+Definition:   System call is Unimplemented
+
+Syscall Name: ugetrlimit
+Definition:   Definition not found in man page.
+
+Syscall Name: ulimit
+Definition:   System call is Unimplemented
+
+Syscall Name: vserver
+Definition:   System call is Unimplemented
+
+
+332 syscall definitions found
+-----------------------------
+_llseek
+_sysctl
+accept
+accept4
+access
+acct
+add_key
+adjtimex
+alarm
+alloc_hugepages
+bdflush
+bind
+brk
+cacheflush
+capget
+capset
+chdir
+chmod
+chown
+chown32
+chroot
+clock_getres
+clock_gettime
+clock_nanosleep
+clock_settime
+clone
+close
+connect
+creat
+create_module
+delete_module
+dup
+dup2
+dup3
+epoll_create
+epoll_create1
+epoll_ctl
+epoll_pwait
+epoll_wait
+eventfd
+eventfd2
+execve
+exit
+exit_group
+faccessat
+fallocate
+fchdir
+fchmod
+fchmodat
+fchown
+fchown32
+fchownat
+fcntl
+fcntl64
+fdatasync
+flock
+fork
+free_hugepages
+fstat
+fstat64
+fstatat64
+fstatfs
+fstatfs64
+fsync
+ftruncate
+ftruncate64
+futex
+futimesat
+get_kernel_syms
+get_mempolicy
+get_thread_area
+getcpu
+getcwd
+getdents
+getdents64
+getegid
+getegid32
+geteuid
+geteuid32
+getgid
+getgid32
+getgroups
+getgroups32
+getitimer
+getpeername
+getpagesize
+getpgid
+getpgrp
+getpid
+getppid
+getpriority
+getresgid
+getresgid32
+getresuid
+getresuid32
+getrlimit
+getrusage
+getsid
+getsockname
+getsockopt
+gettid
+gettimeofday
+getuid
+getuid32
+idle
+init_module
+inotify_add_watch
+inotify_init
+inotify_init1
+inotify_rm_watch
+io_cancel
+io_destroy
+io_getevents
+io_setup
+io_submit
+ioctl
+ioperm
+iopl
+ioprio_get
+ioprio_set
+ipc
+kexec_load
+keyctl
+kill
+lchown
+lchown32
+link
+linkat
+listen
+lookup_dcookie
+lseek
+lstat
+lstat64
+madvise
+mbind
+migrate_pages
+mincore
+mkdir
+mkdirat
+mknod
+mknodat
+mlock
+mlockall
+mmap
+mmap2
+modify_ldt
+mount
+move_pages
+mprotect
+mq_getsetattr
+mq_notify
+mq_open
+mq_timedreceive
+mq_timedsend
+mq_unlink
+mremap
+msgctl
+msgget
+msgrcv
+msgsnd
+msync
+munlock
+munlockall
+munmap
+nanosleep
+nfsservctl
+nice
+open
+openat
+pause
+pciconfig_iobase
+pciconfig_read
+pciconfig_write
+personality
+pipe
+pipe2
+pivot_root
+poll
+ppoll
+prctl
+pread64
+preadv
+prlimit
+pselect6
+ptrace
+pwrite64
+pwritev
+quotactl
+read
+readahead
+readdir
+readlink
+readlinkat
+readv
+reboot
+recv
+recvfrom
+recvmsg
+recvmmsg
+remap_file_pages
+rename
+renameat
+request_key
+rmdir
+rt_sigqueueinfo
+rt_tgsigqueueinfo
+sched_get_priority_max
+sched_get_priority_min
+sched_getaffinity
+sched_getparam
+sched_getscheduler
+sched_rr_get_interval
+sched_setaffinity
+sched_setparam
+sched_setscheduler
+sched_yield
+select
+semctl
+semget
+semop
+semtimedop
+send
+sendfile
+sendfile64
+sendmsg
+sendto
+set_thread_area
+set_tid_address
+setdomainname
+setfsgid
+setfsgid32
+setfsuid
+setfsuid32
+setgid
+setgid32
+setgroups
+setgroups32
+sethostname
+setitimer
+setns
+setpgid
+setpriority
+setregid
+setregid32
+setresgid
+setresgid32
+setresuid
+setresuid32
+setreuid
+setreuid32
+setrlimit
+setsid
+setsockopt
+settimeofday
+setuid
+setuid32
+setup
+sgetmask
+shmat
+shmctl
+shmdt
+shmget
+shutdown
+sigaction
+sigaltstack
+signal
+signalfd
+signalfd4
+sigpending
+sigprocmask
+sigreturn
+sigsuspend
+socket
+socketcall
+socketpair
+splice
+spu_create
+spu_run
+ssetmask
+stat
+stat64
+statfs
+statfs64
+stime
+subpage_prot
+swapoff
+swapon
+symlink
+symlinkat
+sync
+sync_file_range
+sync_file_range2
+syncfs
+sysfs
+sysinfo
+syslog
+tee
+tgkill
+time
+timer_create
+timer_delete
+timer_getoverrun
+timer_gettime
+timer_settime
+timerfd_create
+timerfd_gettime
+timerfd_settime
+times
+tkill
+truncate
+truncate64
+umask
+umount
+umount2
+uname
+unlink
+unlinkat
+unshare
+uselib
+ustat
+utime
+utimensat
+utimes
+vfork
+vhangup
+vm86old
+vmsplice
+wait4
+waitid
+waitpid
+write
+writev
+
+
+26 syscall definitions with no manual entry
+-------------------------------------------
+clock_adjtime
+fanotify_init
+fanotify_mark
+fgetxattr
+flistxattr
+fremovexattr
+fsetxattr
+get_robust_list
+getxattr
+lgetxattr
+listxattr
+llistxattr
+lremovexattr
+lsetxattr
+name_to_handle_at
+open_by_handle_at
+perf_event_open
+phys
+query_module
+removexattr
+restart_syscall
+sendmmsg
+set_mempolicy
+set_robust_list
+set_zone_reclaim
+setxattr
+
+15 definitions not found in their man entry
+-------------------------------------------
+_newselect
+fadvise64
+fadvise64_64
+oldfstat
+oldlstat
+oldolduname
+oldstat
+olduname
+rt_sigaction
+rt_sigpending
+rt_sigprocmask
+rt_sigreturn
+rt_sigsuspend
+rt_sigtimedwait
+ugetrlimit
+
+16 system calls identified as unimplemented
+-------------------------------------------
+afs_syscall
+break
+ftime
+getpmsg
+gtty
+lock
+madvise1
+mpx
+prof
+profil
+putpmsg
+security
+stty
+tuxcall
+ulimit
+vserver
+
+
