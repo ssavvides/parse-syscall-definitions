@@ -90,6 +90,15 @@ def syscalls_per_library(libraries, syscall_definitions, order=None):
       A list of the system calls not found in any of the examined libraries.
   """
   
+  # remove libraries not contained in the order.
+  if order:
+    index = 0
+    while index < len(libraries):
+      if libraries[index].name not in order:
+        libraries.pop(index)
+      else:
+        index += 1
+
   # a list to hold all system calls not contained in any of the examined
   # libraries.
   not_in_libraries = []
@@ -122,15 +131,6 @@ def syscalls_per_library(libraries, syscall_definitions, order=None):
       
     if not contained:
       not_in_libraries.append(sd.name)
-  
-  # remove libraries with not contained in the order.
-  if order:
-    index = 0
-    while index < len(libraries):
-      if libraries[index].name not in order:
-        libraries.pop(index)
-      else:
-        index += 1
 
   return not_in_libraries
 
@@ -159,17 +159,20 @@ def main():
     SyscallLibrary("sock_obj", sock_obj)
   ]
   
-
+  # the order in which the libraries will be examined for whether they contain a 
+  # system call function.
   # order = None
   order = ["libc", "os", "socket", "sock_obj", "sys"]
   
   syscalls_not_in_libraries = syscalls_per_library(libraries, syscall_definitions, order)
 
+  # print the system calls per library.
   for lib in sorted(libraries, key=lambda x: len(x.syscalls_contained), reverse=True):
     print(lib)
     print()
     print()
 
+  # print the system calls not identified in any of the examined libraries.
   print("Syscalls not in any of the examined libraries (" + 
         str(len(syscalls_not_in_libraries)) + "):")
   print("----------------------------------------------------")
