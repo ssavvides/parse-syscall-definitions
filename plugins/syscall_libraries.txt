@@ -1,77 +1,3 @@
-Functions in os(63)
--------------------
-access
-chdir
-chmod
-chown
-chroot
-close
-dup
-dup2
-execve
-fchdir
-fchmod
-fchown
-fdatasync
-fork
-fstat
-fsync
-ftruncate
-getcwd
-getegid
-geteuid
-getgid
-getgroups
-getpgid
-getpgrp
-getpid
-getppid
-getresgid
-getresuid
-getsid
-getuid
-kill
-lchown
-link
-lseek
-lstat
-mkdir
-mknod
-nice
-open
-pipe
-read
-readlink
-rename
-rmdir
-setgid
-setgroups
-setpgid
-setregid
-setresgid
-setresuid
-setreuid
-setsid
-setuid
-stat
-symlink
-times
-umask
-uname
-unlink
-utime
-wait4
-waitpid
-write
-
-
-
-Functions in sys(1)
--------------------
-exit
-
-
-
 Functions in libc(261)
 ----------------------
 accept
@@ -338,11 +264,71 @@ writev
 
 
 
-Functions in socket(3)
-----------------------
+Functions in os(63)
+-------------------
+access
+chdir
+chmod
+chown
+chroot
+close
 dup
-socket
-socketpair
+dup2
+execve
+fchdir
+fchmod
+fchown
+fdatasync
+fork
+fstat
+fsync
+ftruncate
+getcwd
+getegid
+geteuid
+getgid
+getgroups
+getpgid
+getpgrp
+getpid
+getppid
+getresgid
+getresuid
+getsid
+getuid
+kill
+lchown
+link
+lseek
+lstat
+mkdir
+mknod
+nice
+open
+pipe
+read
+readlink
+rename
+rmdir
+setgid
+setgroups
+setpgid
+setregid
+setresgid
+setresuid
+setreuid
+setsid
+setuid
+stat
+symlink
+times
+umask
+uname
+unlink
+utime
+wait4
+waitpid
+write
 
 
 
@@ -363,6 +349,20 @@ send
 sendto
 setsockopt
 shutdown
+
+
+
+Functions in socket(3)
+----------------------
+dup
+socket
+socketpair
+
+
+
+Functions in sys(1)
+-------------------
+exit
 
 
 

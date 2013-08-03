@@ -13,6 +13,12 @@
   definitions. Then the program examines a set of python libraries and checks
   whether these libraries contain functions corresponding to these system calls.
 
+  An order of the libraries can be optionally set. If the order is not set, then
+  each library will be examined individually for whether it contains these
+  system calls. This means that a system call can appear in more than one
+  library. If the order is set, then the libraries will be examined in that
+  order, and each system call will appear only once, in the library first met.
+
 """
 
 import os
@@ -56,7 +62,7 @@ class SyscallLibrary:
 
 
 
-def syscalls_per_library(libraries, syscall_definitions):
+def syscalls_per_library(libraries, syscall_definitions, order=None):
   """
   <Purpose>
     Given a set of libraries and a set of system calls, examine which system
@@ -68,6 +74,10 @@ def syscalls_per_library(libraries, syscall_definitions):
       call function.
     syscall_definitions:
       The set of system calls to examine.
+    order:
+      An optional list of library names that specifies the order in which to
+      examine the libraries, and hence each system call name appears only once,
+      in the first library it is met.
 
   <Exceptions>
     None
@@ -83,17 +93,45 @@ def syscalls_per_library(libraries, syscall_definitions):
   # a list to hold all system calls not contained in any of the examined
   # libraries.
   not_in_libraries = []
-
+  
   for sd in syscall_definitions:
     contained = False
-    for lib in libraries:
-      if(getattr(lib.module, sd.name, False)):
-        lib.syscalls_contained.append(sd.name)
-        contained = True
-    
+    if order:
+      # if a library order was given, examine libraries in that order and
+      # include each system call only once, in the first library found.
+      lib = None
+      for libname in order:
+        for l in libraries:
+          if l.name == libname:
+            lib = l
+            break
+
+        if lib == None:
+          raise Exception("Library " + libname + " not found.")
+
+        if(getattr(lib.module, sd.name, False)):
+          lib.syscalls_contained.append(sd.name)
+          contained = True
+          break
+
+    else:
+      for lib in libraries:
+        if(getattr(lib.module, sd.name, False)):
+          lib.syscalls_contained.append(sd.name)
+          contained = True
+      
     if not contained:
       not_in_libraries.append(sd.name)
   
+  # remove libraries with not contained in the order.
+  if order:
+    index = 0
+    while index < len(libraries):
+      if libraries[index].name not in order:
+        libraries.pop(index)
+      else:
+        index += 1
+
   return not_in_libraries
 
 
@@ -120,10 +158,14 @@ def main():
     SyscallLibrary("socket", socket), 
     SyscallLibrary("sock_obj", sock_obj)
   ]
+  
 
-  syscalls_not_in_libraries = syscalls_per_library(libraries, syscall_definitions)
+  # order = None
+  order = ["libc", "os", "socket", "sock_obj", "sys"]
+  
+  syscalls_not_in_libraries = syscalls_per_library(libraries, syscall_definitions, order)
 
-  for lib in libraries:
+  for lib in sorted(libraries, key=lambda x: len(x.syscalls_contained), reverse=True):
     print(lib)
     print()
     print()
