@@ -6,7 +6,7 @@
   June 2013
 
 <Author>
-  Savvas Savvides <ssavvide@purdue.edu>
+  Savvas Savvides <savvas@purdue.edu>
 
 <Purpose>
   Parse the definitions of all system calls from their man pages.
@@ -17,8 +17,9 @@
 
 """
 
+import re
 import subprocess
-import syscall_definition
+import SyscallDefinition
 
 
 
@@ -51,9 +52,25 @@ def parse_syscall_names_list():
   
   # remove all lines until the line with the first system call which includes
   # the text "_llseek(2)" on a GNU/Linux 3.5.0-36-generic
-  while("_llseek(2)" not in man_page_lines[0]):
+  while True:
+    if len(man_page_lines) == 0:
+      raise Exception("_llseek not found in syscalls man page.")
+      
+    line = man_page_lines[0]
+
+    # line could include backspaces \b which prevents from searching the line 
+    # correctly. Remove backspaces.
+    # eg: # __llllsseeeekk(2)                  1.2
+    char_backspace = re.compile(".\b")
+    line = char_backspace.sub("", line)
+
+    if "_llseek(2)" in man_page_lines[0]:
+      break
+    
+    # if this is not the line we are looking for then remove the line and
+    # continue.
     man_page_lines.pop(0)
-  
+
   # At this point the first item in man_page_lines should contain the name of
   # the first system call. Get the names of all system calls up to the last one
   # which should be the "writev" system call.
@@ -114,7 +131,7 @@ def get_syscall_definitions_list(syscall_names_list):
   """
   syscall_definitions_list = []
   for syscall_name in syscall_names_list:
-    syscall_definitions_list.append(syscall_definition.SyscallDefinition(syscall_name))
+    syscall_definitions_list.append(SyscallDefinition.SyscallDefinition(syscall_name))
 
   return syscall_definitions_list
 
@@ -162,7 +179,7 @@ def print_definitions2(syscall_definitions_list):
   print("List of all syscall definitions found")
   print("=====================================")
   for sd in syscall_definitions_list:
-    if(sd.type == syscall_definition.SyscallDefinition.FOUND):
+    if(sd.type == SyscallDefinition.SyscallDefinition.FOUND):
       print(sd.definition)
 
   print()
@@ -185,7 +202,7 @@ def print_definitions3(syscall_definitions_list):
   print("List of all syscall names for which a definition was not found")
   print("==============================================================")
   for sd in syscall_definitions_list:
-    if(sd.type != syscall_definition.SyscallDefinition.FOUND):
+    if(sd.type != SyscallDefinition.SyscallDefinition.FOUND):
       print(sd.name)
       
   print()
@@ -200,12 +217,12 @@ def print_definitions3(syscall_definitions_list):
   print("Syscall names and the reason its definition was not found")
   print("=========================================================")
   for sd in syscall_definitions_list:
-    if(sd.type == syscall_definition.SyscallDefinition.FOUND):
+    if(sd.type == SyscallDefinition.SyscallDefinition.FOUND):
       found.append(sd.name)
       continue
-    elif(sd.type == syscall_definition.SyscallDefinition.NO_MAN_ENTRY):
+    elif(sd.type == SyscallDefinition.SyscallDefinition.NO_MAN_ENTRY):
       no_man.append(sd.name)
-    elif(sd.type == syscall_definition.SyscallDefinition.NOT_FOUND):
+    elif(sd.type == SyscallDefinition.SyscallDefinition.NOT_FOUND):
       not_found.append(sd.name)
     else: # unimplemented
       unimplemented.append(sd.name)
