@@ -50,21 +50,25 @@ def parse_syscall_names_list():
   # cast to string and split into a list of lines.
   man_page_lines = man_page_bytestring.decode("utf-8").split("\n")
   
+  # a regular expression used to sanitize the read lines. Specifically removes
+  # the backspace characters and the character they hide to allow searching for
+  # substrings.
+  char_backspace = re.compile(".\b")
+
   # remove all lines until the line with the first system call which includes
   # the text "_llseek(2)" on a GNU/Linux 3.5.0-36-generic
   while True:
     if len(man_page_lines) == 0:
       raise Exception("_llseek not found in syscalls man page.")
-      
+
     line = man_page_lines[0]
 
     # line could include backspaces \b which prevents from searching the line 
     # correctly. Remove backspaces.
     # eg: # __llllsseeeekk(2)                  1.2
-    char_backspace = re.compile(".\b")
     line = char_backspace.sub("", line)
 
-    if "_llseek(2)" in man_page_lines[0]:
+    if "_llseek(2)" in line:
       break
     
     # if this is not the line we are looking for then remove the line and
@@ -76,12 +80,19 @@ def parse_syscall_names_list():
   # which should be the "writev" system call.
   syscall_names_list = []
   
-  # loop until the last entry of the list of syscal names is writev.
-  while(len(syscall_names_list) == 0 or syscall_names_list[-1] != "writev"):
-    syscall_name = man_page_lines.pop(0).strip()
+  # loop until the last entry of the list of syscall names is writev.
+  while True:
+    if len(man_page_lines) == 0:
+      raise Exception("Reached the end of syscalls man page while trying to " + 
+                      "read the syscall names.")
+
+    line = man_page_lines.pop(0).strip()
+    
+    # sanitize line (remove backspaces)
+    line = char_backspace.sub("", line)
     
     # skip empty lines.
-    if(syscall_name == ''):
+    if(line == ''):
       continue
     
     # we only need the name of the system call which should be the first part of
@@ -93,7 +104,7 @@ def parse_syscall_names_list():
     # alloc_hugepages(2)          2.5.36        Removed in 2.5.44
     # perf_event_open(2)          2.6.31        Was called perf_counter_open()
     #                                           in 2.6.31; renamed in 2.6.32
-    syscall_name = syscall_name.split(None, 1)[0]
+    syscall_name = line.split(None, 1)[0].strip()
 
     # all syscall names are followed by the "(2)" text. if not then they must be
     # something else we don't need, so let's skip it.
@@ -103,6 +114,12 @@ def parse_syscall_names_list():
     # remove the "(2)" part and add it to the list.
     syscall_name = syscall_name[:syscall_name.find("(2)")]
     syscall_names_list.append(syscall_name)
+
+
+    # once we add the writev syscall we break since there are no more syscalls
+    # after this.
+    if(syscall_name == "writev"):
+      break
 
   return syscall_names_list
 

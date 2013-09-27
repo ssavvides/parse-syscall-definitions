@@ -6,10 +6,24 @@
   June 2013
 
 <Author>
-  Savvas Savvides <ssavvide@purdue.edu>
+  Savvas Savvides <savvas@purdue.edu>
 
 <Purpose>
   Parse the definition of a system call into a SyscallDefinition object.
+
+  Read the man page of a system call and extract its definition. If a definition
+  with the exact system call name is not found then pick one with a similar name
+  if such a definition exists. If there are multiple definitions for the same
+  system call then choose the one with the most arguments.
+
+  Examples:
+
+  man 2 chown32 gives the same page as man chown so for chown32 definition is:
+    int chown(const char *path, uid_t owner, gid_t group)
+
+  from open man page:
+    int open(const char *pathname, int flags);
+    int open(const char *pathname, int flags, mode_t mode); <-- pick this one
 
 """
 
@@ -17,12 +31,27 @@ import re
 import sys
 import subprocess
 
-DEBUG = False
+DEBUG = True
 
 
 class Parameter:
   """
-  This object is used to describe a parameter of system call definitions.
+  <Purpose>
+    This object is used to describe a parameter of system call definitions.
+
+  <Attributes>
+    self.type
+    self.name
+    self.ellipsis
+    self.enum
+    self.array
+    self.const
+    self.union
+    self.struct
+    self.pointer
+    self.unsigned
+    self.function
+    self.const_pointer
   """
 
   def __init__(self, parameter_string):
@@ -168,8 +197,20 @@ class Parameter:
 
 class Definition:
   """
-  A Definition object is made up of three parts. The definition return type, the
-  definition name and the definition parameters.
+  <Purpose>
+    A Definition object is made up of three parts. The definition return type,
+    the definition name and the definition parameters.
+  <Attributes>
+    ret_type:
+      The return type of the syscall definition.
+
+    name:
+      The name of the definition. This is not always the same as the syscall 
+      name.
+
+    parameters:
+      A list of Parameter objects each describing a parameter of the definition.
+
   """
 
   def __init__(self, definition_line):
@@ -259,12 +300,26 @@ class Definition:
 
 class SyscallDefinition:
   """
-  A SyscallDefinition is made up of the system call name and its definition 
-  parsed from its man page.
+  <Purpose>
+    A SyscallDefinition is made up of the system call name and its definition 
+    parsed from its man page.
 
-  The name of the system call and the definition name are not necessarily the
-  same, but most of the times are. For example the name of the system call can
-  be 'chown32; and the name of its definition 'chown'.
+    The name of the system call and the definition name are not necessarily the
+    same, but most of the times are. For example the name of the system call can
+    be 'chown32' and the name of its definition 'chown'.
+
+  <Attributes>
+    name:
+      The name of the system call
+    
+    type:
+      The type of the definition. Can be one of NO_MAN_ENTRY, NOT_FOUND, 
+      UNIMPLEMENTED, FOUND
+    
+    definition:
+      Holds the definition object if the type is FOUND. Otherwise definition is 
+      set to None.
+
   """
 
   # types of SyscallDefinitions.
@@ -360,22 +415,74 @@ class SyscallDefinition:
     ...
 
 
-    Note that, as shown in the example SYNOPSIS above, a man page can have
-    multiple definitions for the same system call and it can also include
-    definitions of similar but different system calls.
+    Note that, as shown in the example above, a man page can have multiple
+    definitions for the same system call and it can also include definitions of
+    similar but different system calls.
 
     """
 
+    # a regular expression used to sanitize the read lines. Specifically removes
+    # the backspace characters and the character they hide to allow searching for
+    # substrings.
+    char_backspace = re.compile(".\b")
+
+    # in some platforms attempts to access the man page of system calls ending
+    # with 32 eg chown32 return the man page of the system call without the 32
+    # eg chown. Same goes for syscalls ending with 64. Other platforms can
+    # instead return an empty string. # if we have this second case then
+    # manually remove the number at the end and try to get the man page again.
+    if len(man_page_lines) == 1 and man_page_lines[0] == '':
+      # read the man page of syscall_name into a byte string.
+      if(syscall_name.endswith("32") or syscall_name.endswith("64")):
+        try:
+          man_page_bytestring = subprocess.check_output(['man', '2', syscall_name[:-2]])
+        except subprocess.CalledProcessError:
+          # if a man entry does not exist no definitions exists.
+          return self.NO_MAN_ENTRY, None
+
+        # cast to string and split into a list of lines.
+        man_page_lines = man_page_bytestring.decode("utf-8").split("\n")
+      else:
+        return self.NO_MAN_ENTRY, None
+
     # remove all lines until the "SYNOPSIS" line.
-    while(man_page_lines[0] != 'SYNOPSIS'):
+    while True:
+      if len(man_page_lines) == 0:
+        raise Exception("Reached end of man page while looking for SYNOPSIS " + 
+                        "line")
+
+      # read the first line
+      line = man_page_lines[0]
+
+      # and then remove the line
       man_page_lines.pop(0)
-    man_page_lines.pop(0) # and pop the 'SYNOPSIS' line itself.
+
+      # line could include backspaces \b which prevents from searching the line 
+      # correctly. Remove backspaces.
+      # eg: # __llllsseeeekk(2)                  1.2
+      line = char_backspace.sub("", line)
+
+      # if the line is the synopsis line we don't want to remove any more lines.
+      if (line == "SYNOPSIS"):
+        break
     
     # examine the lines until the 'DESCRIPTION' line is met, indicating the end
-    # of the synopsis part.
+    # of the synopsis part. Examine each line in between for whether it is a
+    # definition.
     all_definitions = []
-    while(man_page_lines[0] != 'DESCRIPTION'):
+    while True:
+      if len(man_page_lines) == 0:
+        raise Exception("Reached end of man page while looking for " + 
+                        "DESCRIPTION line.")
+
       line = man_page_lines.pop(0).strip()
+      
+      # sanitize line
+      line = char_backspace.sub("", line)
+
+      # when we reach the description line then we can safely stop.
+      if (line == "DESCRIPTION"):
+        break
 
       # if the line includes the word "Unimplemented" then the system call is
       # unimplemented.
@@ -392,9 +499,9 @@ class SyscallDefinition:
         line = line.strip()
 
       # a definition line must contain at least two parts (separated by
-      # whitespace) and an opening bracket, otherwise it's not a definition.
-      # Remember that a definition can span multiple lines hence we don't expect
-      # it to have its closing bracket in the current line.
+      # whitespace) and an opening bracket, otherwise it's not a definition. It
+      # is possible that definition spans multiple lines hence we don't
+      # expect it to have its closing bracket in the current line.
       if(not (len(line.split()) > 1 and "(" in line)):
         continue
       
@@ -430,10 +537,10 @@ class SyscallDefinition:
 
       all_definitions.append(Definition(line))
     
-    # Let's keep the all_definitions variable intact which holds all the
-    # definitions parsed from the man page, even if at the end we only return
-    # one definition. It might be useful in the future.
-    definitions = all_definitions
+    # We will consume some of these definitions but let's keep the
+    # all_definitions variable intact which holds all the definitions parsed
+    # from the man page. It might be useful in the future.
+    definitions = all_definitions[:]
 
     # As shown in the example above, some manual pages include multiple
     # definitions. Remove definitions whose name does not start with the syscall
