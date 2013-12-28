@@ -1,7 +1,4 @@
 """
-<Program Name>
-  syscall_definition.py
-
 <Started>
   June 2013
 
@@ -16,22 +13,36 @@
   if such a definition exists. If there are multiple definitions for the same
   system call then choose the one with the most arguments.
 
-  Examples:
+  Examples demonstrating the above:
 
   man 2 chown32 gives the same page as man chown so for chown32 definition is:
     int chown(const char *path, uid_t owner, gid_t group)
 
   from open man page:
     int open(const char *pathname, int flags);
-    int open(const char *pathname, int flags, mode_t mode); <-- pick this one
+    int open(const char *pathname, int flags, mode_t mode); <-- pick this one.
+  so we pick the second definition which has the most arguments.
+
+
+  Manual pages (man) are read using the subprocess library.
+
+
+  Example running this program:
+
+  running:
+    python3 SyscallDefinition.py open
+
+  will return the definition of the open syscall which is:
+    Syscall Name: open
+    Definition:   int open(const char *pathname, int flags, mode_t mode)
 
 """
 
 import re
-import sys
 import subprocess
 
-DEBUG = True
+# controls printing
+DEBUG = False
 
 
 class Parameter:
@@ -40,18 +51,44 @@ class Parameter:
     This object is used to describe a parameter of system call definitions.
 
   <Attributes>
-    self.type
-    self.name
-    self.ellipsis
-    self.enum
-    self.array
-    self.const
-    self.union
-    self.struct
-    self.pointer
-    self.unsigned
-    self.function
-    self.const_pointer
+    self.type:
+      the data type of the argument, this can be for example int or char
+
+    self.name:
+      this is the name given to the parameter, for example pathname or domain
+
+    self.ellipsis:
+      ellipsis can appear in some syscalls indicating additional unspecified
+      arguments may be required 
+      e.g. int fcntl(int fd, int cmd, ...)
+
+    self.enum:
+      long ptrace(enum __ptrace_request request, pid_t pid, void *addr, void *data)
+
+    self.array:
+      int execve(const char *filename, char *const argv[], char *const envp[])
+
+    self.const:
+      int execve(const char *filename, char *const argv[], char *const envp[])
+
+    self.union:
+      long nfsservctl(int cmd, struct nfsctl_arg *argp, union nfsctl_res *resp)
+
+    self.struct:
+      int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+
+    self.pointer:
+      int access(const char *pathname, int mode)
+
+    self.unsigned:
+      int getdents(unsigned int fd, struct linux_dirent *dirp, unsigned int count)
+
+    self.function:
+      int clone(int (*fn)(void *), void *child_stack, int flags, void *arg, ...)
+
+    self.const_pointer:
+      int execve(const char *filename, char *const argv[], char *const envp[])
+
   """
 
   def __init__(self, parameter_string):
@@ -105,18 +142,23 @@ class Parameter:
 
     # a parameter could be the ellipsis ("...")
     if(parameter_string == "..."):
+      # type and name of the parameter remain None
       self.ellipsis = True
       return
 
-    # parameter can be a function pointer eg in clone: int (*fn)(void *)
+    # parameter can be a function pointer eg in clone: 
+    # int clone(int (*fn)(void *), void *child_stack, int flags, void *arg, ...)
+    # ==> int (*fn)(void *)
     if(parameter_string.endswith(")")):
       self.function = True
       # type will hold the return type of the function
       self.type = parameter_string[:parameter_string.find(" (*")].strip()
       # name will hold everything else.
+      # TODO: could potentially be more fine-grained parsed.
       self.name = parameter_string[parameter_string.find(" (*"):].strip()
+    
     else:
-      # name is the right-most part and everything else is the type.
+      # otherwise name is the right-most part and everything else is the type.
       self.type, self.name = parameter_string.rsplit(None, 1)
     
     # if the name starts with a "*" the parameter is a pointer.
@@ -154,12 +196,16 @@ class Parameter:
           # if this is not the case then an unexpected format was encountered.
           raise Exception("Unexpected part in parameter: " + parameter_string)
   
-
   def __repr__(self):
-    representation = ""
+    """
+    This should match the original representation of the parameter as it appears
+    in the man page it was originally parsed from.
+    """
 
     if(self.ellipsis):
       return "..."
+
+    representation = ""
     
     if(self.const):
       representation += "const "
@@ -198,17 +244,20 @@ class Parameter:
 class Definition:
   """
   <Purpose>
-    A Definition object is made up of three parts. The definition return type,
-    the definition name and the definition parameters.
+    A Definition object is made up of three parts: 
+      - definition return type
+      - definition name 
+      - definition parameters
+  
   <Attributes>
-    ret_type:
+    self.ret_type:
       The return type of the syscall definition.
 
-    name:
+    self.name:
       The name of the definition. This is not always the same as the syscall 
       name.
 
-    parameters:
+    self.parameters:
       A list of Parameter objects each describing a parameter of the definition.
 
   """
@@ -226,7 +275,7 @@ class Definition:
     <Arguments>
       definition_line:
         A string with the definition in a single line as it appears in the 
-        manual page of the appropriate system call, with any comments removed.
+        manual page of the corresponding system call, with any comments removed.
 
     <Exceptions>
       None
@@ -237,6 +286,7 @@ class Definition:
     <Returns>
       None
     """
+
     # get the beginning of the line before the first opening bracket. This part
     # holds the return type and the name of the definition. The remaining part
     # holds the parameters of the definition.
@@ -283,7 +333,12 @@ class Definition:
       
 
   def __repr__(self):
-    # generate the parameters string.
+    """
+    This should match the original representation of the definition as it
+    appears in the man page it was originally parsed from.
+    """
+
+    # firstly generate the representation for the parameters.
     parameters_string = ''
     first = True
     for par in self.parameters:
@@ -304,17 +359,36 @@ class SyscallDefinition:
     A SyscallDefinition is made up of the system call name and its definition 
     parsed from its man page.
 
-    The name of the system call and the definition name are not necessarily the
-    same, but most of the times are. For example the name of the system call can
-    be 'chown32' and the name of its definition 'chown'.
+    The reason of having this object in addition to the Definition object is
+    because the name of the system call and the definition name are not
+    necessarily the same, but most of the times are. For example the name of the
+    system call can be 'chown32' and the name of its definition 'chown'.
+
+    Some intuition regarding the above taken from chown man page:
+    The original Linux chown(), fchown(), and lchown()  system  calls  sup‐
+    ported  only  16-bit user and group IDs.  Subsequently, Linux 2.4 added
+    chown32(), fchown32(), and  lchown32(),  supporting  32-bit  IDs.   The
+    glibc  chown(),  fchown(), and lchown() wrapper functions transparently
+    deal with the variations across kernel versions.
 
   <Attributes>
     name:
       The name of the system call
     
     type:
-      The type of the definition. Can be one of NO_MAN_ENTRY, NOT_FOUND, 
-      UNIMPLEMENTED, FOUND
+      The type of the definition. Can be one of:
+       - NO_MAN_ENTRY:
+          no man entry was found for this syscall name
+
+       - NOT_FOUND:
+          man entry found but no definition found inside
+
+       - UNIMPLEMENTED:
+          syscall identified as unimplemented
+
+       - FOUND:
+          definition for this system call was found
+
     
     definition:
       Holds the definition object if the type is FOUND. Otherwise definition is 
@@ -323,10 +397,10 @@ class SyscallDefinition:
   """
 
   # types of SyscallDefinitions.
-  NO_MAN_ENTRY = 1  # no man entry was found for this syscall name
-  NOT_FOUND = 2     # man entry found but no definition found inside
-  UNIMPLEMENTED = 3 # syscall identified as unimplemented
-  FOUND = 4         # definition for this system call was found
+  NO_MAN_ENTRY = 1 
+  NOT_FOUND = 2    
+  UNIMPLEMENTED = 3
+  FOUND = 4        
 
 
   def __init__(self, syscall_name):
@@ -360,7 +434,8 @@ class SyscallDefinition:
     """
     <Purpose>
       Reads the man entry of the system call whose name is given as a parameter
-      and returns its definition.
+      and returns its definition as a Description object along with what kind of
+      definition it is.
 
     <Arguments>
       syscall_name:
@@ -380,9 +455,12 @@ class SyscallDefinition:
     """
     
     if DEBUG:
-      print(syscall_name)
+      print("Given name of syscall to parse: " + syscall_name)
 
     # read the man page of syscall_name into a byte string.
+    #
+    # TODO: reading entire man page: current implementation is not concerned 
+    # with performance too much.
     try:
       man_page_bytestring = subprocess.check_output(['man', '2', syscall_name])
     except subprocess.CalledProcessError:
@@ -395,49 +473,45 @@ class SyscallDefinition:
     """
     Example of the open man page, upto the definitions part:
 
+    <--start example-->
+          OPEN(2)                  Linux Programmer's Manual           OPEN(2)
 
-    OPEN(2)                  Linux Programmer's Manual                  OPEN(2)
+          NAME
+                 open, creat - open and possibly create a file or device
 
-    NAME
-           open, creat - open and possibly create a file or device
+          SYNOPSIS
+                 #include <sys/types.h>
+                 #include <sys/stat.h>
+                 #include <fcntl.h>
 
-    SYNOPSIS
-           #include <sys/types.h>
-           #include <sys/stat.h>
-           #include <fcntl.h>
+                 int open(const char *pathname, int flags);
+                 int open(const char *pathname, int flags, mode_t mode);
 
-           int open(const char *pathname, int flags);
-           int open(const char *pathname, int flags, mode_t mode);
+                 int creat(const char *pathname, mode_t mode);
 
-           int creat(const char *pathname, mode_t mode);
-
-    DESCRIPTION
-    ...
+          DESCRIPTION
+    <--end example-->
 
 
     Note that, as shown in the example above, a man page can have multiple
-    definitions for the same system call and it can also include definitions of
-    similar but different system calls.
+    definitions for the same system call (2 definitions given for open) and it
+    can also include definitions of similar but different system calls (creat).
 
     """
-
-    # a regular expression used to sanitize the read lines. Specifically removes
-    # the backspace characters and the character they hide to allow searching for
-    # substrings.
-    char_backspace = re.compile(".\b")
 
     # in some platforms attempts to access the man page of system calls ending
     # with 32 eg chown32 return the man page of the system call without the 32
     # eg chown. Same goes for syscalls ending with 64. Other platforms can
-    # instead return an empty string. # if we have this second case then
-    # manually remove the number at the end and try to get the man page again.
+    # instead return an empty string which means the syscall definition will not
+    # be discovered. If this happens check if there is a man page for the
+    # syscall without the number at the end.
     if len(man_page_lines) == 1 and man_page_lines[0] == '':
       # read the man page of syscall_name into a byte string.
       if(syscall_name.endswith("32") or syscall_name.endswith("64")):
         try:
           man_page_bytestring = subprocess.check_output(['man', '2', syscall_name[:-2]])
         except subprocess.CalledProcessError:
-          # if a man entry does not exist no definitions exists.
+          # if a man entry does not exist no definition exists.
           return self.NO_MAN_ENTRY, None
 
         # cast to string and split into a list of lines.
@@ -445,7 +519,16 @@ class SyscallDefinition:
       else:
         return self.NO_MAN_ENTRY, None
 
-    # remove all lines until the "SYNOPSIS" line.
+
+    # a regular expression used to sanitize the read lines. Specifically it
+    # removes the backspace characters and the character they hide to allow
+    # searching for substrings. e.g. the string "example\b" will be replaced
+    # with the string "exampl".
+    char_backspace = re.compile(".\b")
+
+    # remove all lines until the "SYNOPSIS" line since the definitions of the
+    # system calls are given right after this line. Refer to the example man
+    # page given above for more information.
     while True:
       if len(man_page_lines) == 0:
         raise Exception("Reached end of man page while looking for SYNOPSIS " + 
@@ -459,7 +542,7 @@ class SyscallDefinition:
 
       # line could include backspaces \b which prevents from searching the line 
       # correctly. Remove backspaces.
-      # eg: # __llllsseeeekk(2)                  1.2
+      # e.g. __llllsseeeekk(2)                  1.2
       line = char_backspace.sub("", line)
 
       # if the line is the synopsis line we don't want to remove any more lines.
@@ -493,7 +576,7 @@ class SyscallDefinition:
       if(line.startswith("typedef")):
         continue
 
-      # remove comments if any. comments are wrapped in "/**/"
+      # remove comments if any. comments are wrapped in "/* */"
       if("/*" in line and "*/" in line):
         line = line[:line.find("/*")] + line[line.rfind("*/")+2:]
         line = line.strip()
@@ -520,15 +603,16 @@ class SyscallDefinition:
           line = line[:line.find("/*")] + line[line.rfind("*/")+2:]
           line = line.strip()
         
-        # don't join more than 3 lines.
+        # definitions cannot span more than 3 lines so don't join more than 3
+        # lines.
         times += 1
         if(times == 3):
           break
 
-      # a complete definition must contain at least two parts(separated by
-      # whitespace), an opening bracket, a closing bracket and end with a semi-
-      # colon. if any of these requirements are missing, then the line is not a
-      # definition and we skip it.
+      # at this point a complete definition must contain at least two
+      # parts(separated by whitespace), an opening bracket, a closing bracket
+      # and end with a semi-colon. if any of these requirements are missing,
+      # then the line is not a definition and we skip it.
       if(not(len(line.split()) > 1 and "(" in line and line.endswith(");"))):
         continue
 
@@ -634,6 +718,12 @@ class SyscallDefinition:
 
 
 def main():
+  import sys
+
+  if(len(sys.argv) != 2):
+    print("Usage: python3 " + sys.argv[0] + " <syscall_name>")
+    exit()
+
   syscall_definition = SyscallDefinition(sys.argv[1])
   print(syscall_definition)
 

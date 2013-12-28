@@ -6,7 +6,7 @@
   July 2013
 
 <Author>
-  Savvas Savvides <ssavvide@purdue.edu>
+  Savvas Savvides <savvas@purdue.edu>
 
 <Purpose>
   The program asks for a pickle file containing a set of system call 
@@ -29,7 +29,7 @@ import socket
 import ctypes
 import ctypes.util
 
-import syscall_definition
+import SyscallDefinition
 
 libc_name = ctypes.util.find_library('c')
 libc = ctypes.CDLL(libc_name)
@@ -72,12 +72,16 @@ def syscalls_per_library(libraries, syscall_definitions, order=None):
     libraries:
       A list of SyscallLibrary objects to examine whether they contain system 
       call function.
+
     syscall_definitions:
       The set of system calls to examine.
+
     order:
       An optional list of library names that specifies the order in which to
-      examine the libraries, and hence each system call name appears only once,
-      in the first library it is met.
+      examine the libraries. If the libraries argument contains a library that
+      does not appear in the order argument, then that library is not considered
+      at all. Each system call name appears only once, which is the first
+      library it is found in.
 
   <Exceptions>
     None
@@ -136,6 +140,7 @@ def syscalls_per_library(libraries, syscall_definitions, order=None):
 
 
 
+
 def main():
   # need exactly one argument which is the pickle file from which to get the
   # syscall definitions.
@@ -162,7 +167,7 @@ def main():
   # the order in which the libraries will be examined for whether they contain a 
   # system call function.
   # order = None
-  order = ["libc", "os", "socket", "sock_obj", "sys"]
+  order = ["os", "socket", "sock_obj", "sys", "libc"]
   
   syscalls_not_in_libraries = syscalls_per_library(libraries, syscall_definitions, order)
 
@@ -178,7 +183,6 @@ def main():
   print("----------------------------------------------------")
   for syscall_name in syscalls_not_in_libraries:
     print(syscall_name)
-
 
 
 if __name__ == '__main__':

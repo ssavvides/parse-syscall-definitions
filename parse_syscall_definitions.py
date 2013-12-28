@@ -1,7 +1,4 @@
 """
-<Program Name>
-  parse_syscall_definitions.py
-
 <Started>
   June 2013
 
@@ -15,12 +12,26 @@
   of all system calls available in the system. Then for each system call read
   its man page and get its definition.
 
+
+  Manual pages (man) are read using the subprocess library.
+
+
+  Example running this program:
+    run:
+      python3 parse_syscall_definitions.py
+
+    - several different views are provided. read the main method at the end of
+    this file and uncomment appropriately.
+    
+    - the option of saving the system call definitions to a pickle file is also
+    provided.
+
 """
 
 import re
 import subprocess
-import SyscallDefinition
 
+import SyscallDefinition
 
 
 def parse_syscall_names_list():
@@ -294,6 +305,7 @@ def pickle_syscall_definitions(syscall_definitions_list):
 
 
 
+
 def main():
   # get a list with all the system call names available in this system.
   syscall_names_list = parse_syscall_names_list()
@@ -309,8 +321,6 @@ def main():
   
   # pickle syscall_definitions_list
   #pickle_syscall_definitions(syscall_definitions_list)
-
-
 
 if __name__ == "__main__":
     main()

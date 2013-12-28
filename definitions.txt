@@ -1,10 +1,10 @@
-#######################################################################
-#                                                                     #
-#  This is an example output of the parse_syscall_definitions.py      #
-#  program executed on a GNU/Linux 3.5.0-36-generic x86 machine.      #
-#  July-17-2013                                                       #
-#                                                                     #
-#######################################################################
+#####################################################################
+#                                                                   #
+#  This is an example output of the parse_syscall_definitions.py    #
+#  program executed on a GNU/Linux 3.5.0-36-generic x86 machine.    #
+#  July-17-2013                                                     #
+#                                                                   #
+#####################################################################
 
 
 A total of 389 system call names were parsed.
