@@ -1,7 +1,4 @@
 """
-<Program Name>
-  syscall_definition.py
-
 <Started>
   July 2013
 

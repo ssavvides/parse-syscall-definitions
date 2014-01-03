@@ -22,7 +22,7 @@
 
     - several different views are provided. read the main method at the end of
     this file and uncomment appropriately.
-    
+
     - the option of saving the system call definitions to a pickle file is also
     provided.
 
@@ -316,11 +316,11 @@ def main():
 
   # different views:
   #print_definitions1(syscall_definitions_list)
-  print_definitions2(syscall_definitions_list)
+  #print_definitions2(syscall_definitions_list)
   #print_definitions3(syscall_definitions_list)
   
   # pickle syscall_definitions_list
-  #pickle_syscall_definitions(syscall_definitions_list)
+  pickle_syscall_definitions(syscall_definitions_list)
 
 if __name__ == "__main__":
     main()
