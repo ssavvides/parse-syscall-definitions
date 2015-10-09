@@ -3,6 +3,7 @@
   June 2013
 
 <Author>
+  Savvas Savvides <savvas@nyu.edu>
   Savvas Savvides <savvas@purdue.edu>
 
 <Purpose>
@@ -25,7 +26,6 @@
 
 
   Manual pages (man) are read using the subprocess library.
-
 
   Example running this program:
 
@@ -128,7 +128,7 @@ class Parameter:
     self.type = None
     self.name = None
     self.ellipsis = False
-    
+
     # fields describing the type of the parameter.
     self.enum = False
     self.array = False
@@ -146,7 +146,7 @@ class Parameter:
       self.ellipsis = True
       return
 
-    # parameter can be a function pointer eg in clone: 
+    # parameter can be a function pointer eg in clone:
     # int clone(int (*fn)(void *), void *child_stack, int flags, void *arg, ...)
     # ==> int (*fn)(void *)
     if(parameter_string.endswith(")")):
@@ -156,20 +156,20 @@ class Parameter:
       # name will hold everything else.
       # TODO: could potentially be more fine-grained parsed.
       self.name = parameter_string[parameter_string.find(" (*"):].strip()
-    
+
     else:
       # otherwise name is the right-most part and everything else is the type.
       self.type, self.name = parameter_string.rsplit(None, 1)
-    
+
     # if the name starts with a "*" the parameter is a pointer.
     if(self.name.startswith("*")):
       self.pointer = True
-      self.name = self.name[1:] # remove the asterisk.
+      self.name = self.name[1:]    # remove the asterisk.
 
     # if the name ends with a "[]" the parameter is an array.
     if(self.name.endswith("[]")):
       self.array = True
-      self.name = self.name[:-2] # remove square brackets.
+      self.name = self.name[:-2]    # remove square brackets.
 
     # split and examine the parts of the type.
     while(len(self.type.split()) > 1):
@@ -195,7 +195,7 @@ class Parameter:
         else:
           # if this is not the case then an unexpected format was encountered.
           raise Exception("Unexpected part in parameter: " + parameter_string)
-  
+
   def __repr__(self):
     """
     This should match the original representation of the parameter as it appears
@@ -206,10 +206,10 @@ class Parameter:
       return "..."
 
     representation = ""
-    
+
     if(self.const):
       representation += "const "
-    
+
     if(self.struct):
       representation += "struct "
 
@@ -218,19 +218,19 @@ class Parameter:
 
     if(self.enum):
       representation += "enum "
-    
+
     if(self.unsigned):
       representation += "unsigned "
 
     representation += self.type + " "
-    
+
     # const pointer comes after the type.
     if(self.const_pointer):
       representation += "*const "
 
     if(self.pointer):
       representation += "*"
-    
+
     representation += self.name
 
     # square brackets come right after the name.
@@ -238,7 +238,7 @@ class Parameter:
       representation += "[]"
 
     return representation
-      
+
 
 
 class Definition:
@@ -291,23 +291,23 @@ class Definition:
     # holds the return type and the name of the definition. The remaining part
     # holds the parameters of the definition.
     def_beginning, parameters_string = definition_line.split("(", 1)
-    
+
     # get the name and the return type of the definition. Name is a single word
     # at the end of def_beginning, and the rest is the return type.
     self.ret_type, self.name = def_beginning.rsplit(None, 1)
 
     # return type can be a pointer in which case the '*' character will be
-    # included in the name of the definition instead of the return type. 
+    # included in the name of the definition instead of the return type.
     if(self.name.startswith("*")):
-      self.name = self.name[1:] # remove the asterisk from name
-      self.ret_type += "*"      # and add it to the return type.
+      self.name = self.name[1:]    # remove the asterisk from name
+      self.ret_type += "*"    # and add it to the return type.
 
     # remove brackets and semi-colon from the end of the parameters and split
     # them into a list of type-name parameters.
     parameters_list = parameters_string.strip("();").split(", ")
-    
+
     self.parameters = []
-    
+
     # syscall definitions with no parameters are given as (void) in which case
     # the parameter_list will have its first (and only) item as "void". In this
     # case we leave the self.parameters as an empty list. Example void
@@ -330,7 +330,7 @@ class Definition:
       assert(str(parameter) == param_string)
 
       self.parameters.append(parameter)
-      
+
 
   def __repr__(self):
     """
@@ -365,10 +365,9 @@ class SyscallDefinition:
     system call can be 'chown32' and the name of its definition 'chown'.
 
     Some intuition regarding the above taken from chown man page:
-    The original Linux chown(), fchown(), and lchown()  system  calls  sup‐
-    ported  only  16-bit user and group IDs.  Subsequently, Linux 2.4 added
-    chown32(), fchown32(), and  lchown32(),  supporting  32-bit  IDs.   The
-    glibc  chown(),  fchown(), and lchown() wrapper functions transparently
+    The original Linux chown(), fchown(), and lchown()  system  calls  supported only 16-bit user 
+    and group IDs. Subsequently, Linux 2.4 added chown32(), fchown32(), and lchown32(), supporting
+    32-bit IDs. The glibc  chown(),  fchown(), and lchown() wrapper functions transparently
     deal with the variations across kernel versions.
 
   <Attributes>
@@ -397,10 +396,10 @@ class SyscallDefinition:
   """
 
   # types of SyscallDefinitions.
-  NO_MAN_ENTRY = 1 
-  NOT_FOUND = 2    
+  NO_MAN_ENTRY = 1
+  NOT_FOUND = 2
   UNIMPLEMENTED = 3
-  FOUND = 4        
+  FOUND = 4
 
 
   def __init__(self, syscall_name):
@@ -453,13 +452,13 @@ class SyscallDefinition:
       (self.UNIMPLEMENTED, None):  if the system call was identified as unimplemented.
       (self.FOUND, Definition()):  if the definition was found.
     """
-    
+
     if DEBUG:
       print("Given name of syscall to parse: " + syscall_name)
 
     # read the man page of syscall_name into a byte string.
     #
-    # TODO: reading entire man page: current implementation is not concerned 
+    # TODO: reading entire man page: current implementation is not concerned
     # with performance too much.
     try:
       man_page_bytestring = subprocess.check_output(['man', '2', syscall_name])
@@ -531,7 +530,7 @@ class SyscallDefinition:
     # page given above for more information.
     while True:
       if len(man_page_lines) == 0:
-        raise Exception("Reached end of man page while looking for SYNOPSIS " + 
+        raise Exception("Reached end of man page while looking for SYNOPSIS " +
                         "line")
 
       # read the first line
@@ -540,7 +539,7 @@ class SyscallDefinition:
       # and then remove the line
       man_page_lines.pop(0)
 
-      # line could include backspaces \b which prevents from searching the line 
+      # line could include backspaces \b which prevents from searching the line
       # correctly. Remove backspaces.
       # e.g. __llllsseeeekk(2)                  1.2
       line = char_backspace.sub("", line)
@@ -548,18 +547,18 @@ class SyscallDefinition:
       # if the line is the synopsis line we don't want to remove any more lines.
       if (line == "SYNOPSIS"):
         break
-    
+
     # examine the lines until the 'DESCRIPTION' line is met, indicating the end
     # of the synopsis part. Examine each line in between for whether it is a
     # definition.
     all_definitions = []
     while True:
       if len(man_page_lines) == 0:
-        raise Exception("Reached end of man page while looking for " + 
+        raise Exception("Reached end of man page while looking for " +
                         "DESCRIPTION line.")
 
       line = man_page_lines.pop(0).strip()
-      
+
       # sanitize line
       line = char_backspace.sub("", line)
 
@@ -578,7 +577,7 @@ class SyscallDefinition:
 
       # remove comments if any. comments are wrapped in "/* */"
       if("/*" in line and "*/" in line):
-        line = line[:line.find("/*")] + line[line.rfind("*/")+2:]
+        line = line[:line.find("/*")] + line[line.rfind("*/") + 2:]
         line = line.strip()
 
       # a definition line must contain at least two parts (separated by
@@ -587,7 +586,7 @@ class SyscallDefinition:
       # expect it to have its closing bracket in the current line.
       if(not (len(line.split()) > 1 and "(" in line)):
         continue
-      
+
       # a definition can sometimes span multiple lines. If a definition line
       # does not end with a semi-colon then the definition spans multiple lines.
       # For up to three times or until the line ends with a semi-colon, join the
@@ -600,9 +599,9 @@ class SyscallDefinition:
 
         # remove comments from the newly created line.
         if("/*" in line and "*/" in line):
-          line = line[:line.find("/*")] + line[line.rfind("*/")+2:]
+          line = line[:line.find("/*")] + line[line.rfind("*/") + 2:]
           line = line.strip()
-        
+
         # definitions cannot span more than 3 lines so don't join more than 3
         # lines.
         times += 1
@@ -620,7 +619,7 @@ class SyscallDefinition:
         print(line)
 
       all_definitions.append(Definition(line))
-    
+
     # We will consume some of these definitions but let's keep the
     # all_definitions variable intact which holds all the definitions parsed
     # from the man page. It might be useful in the future.
@@ -633,7 +632,7 @@ class SyscallDefinition:
     def_index = 0
     while(def_index < len(definitions)):
       # remove the "_" if what's remaining is similar to the syscall_name.
-      if(definitions[def_index].name.startswith("_") 
+      if(definitions[def_index].name.startswith("_")
            and syscall_name.startswith(definitions[def_index].name[1:])):
         definitions[def_index].name = definitions[def_index].name[1:]
 
@@ -642,9 +641,9 @@ class SyscallDefinition:
       # example if the syscall_name is "chown32" we want to keep the definition
       # with name "chown" but not the one with name "fchown".
       if(syscall_name.startswith(definitions[def_index].name)):
-        def_index += 1 # increment index so we keep this item
+        def_index += 1    # increment index so we keep this item
       else:
-        definitions.pop(def_index) # remove this item, don't incrementing index
+        definitions.pop(def_index)    # remove this item, don't incrementing index
 
     if(len(definitions) == 0):
       # if there are no definitions left, then we could not find a suitable
@@ -689,12 +688,12 @@ class SyscallDefinition:
         if(m):
           if(m.group(1) == syscall_name):
             similar_definitions.append(definition)
-      
+
       # from experience there is at most one such definition but let's assert to
       # be certain.
       assert len(similar_definitions) <= 1
 
-      if(len(similar_definition) == 0):
+      if(len(similar_definitions) == 0):
         return self.NOT_FOUND, None
       return self.FOUND, similar_definitions[0]
 
