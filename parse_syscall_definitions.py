@@ -29,6 +29,7 @@
 """
 
 import re
+import signal
 import subprocess
 import sys
 
@@ -59,7 +60,8 @@ def parse_syscall_names_list():
 
 
     # read the man page for 'syscalls' into a byte string.
-    man_page_bytestring = subprocess.check_output(['man', 'syscalls'])
+    man_page_bytestring = subprocess.check_output(['man', 'syscalls'], preexec_fn=lambda:
+                      signal.signal(signal.SIGPIPE, signal.SIG_DFL))
 
     # cast to string and split into a list of lines.
     man_page_lines = man_page_bytestring.decode("utf-8").split("\n")
