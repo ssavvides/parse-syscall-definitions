@@ -45,7 +45,7 @@ import subprocess
 DEBUG = False
 
 
-class Parameter:
+class SyscallParameter:
   """
   <Purpose>
     This object is used to describe a parameter of system call definitions.
@@ -94,7 +94,7 @@ class Parameter:
   def __init__(self, parameter_string):
     """
     <Purpose>
-      Creates a Parameter object.
+      Creates a SyscallParameter object.
 
       The passed parameter_string is made up from the parameter type and a
       parameter name. We need both the type and the name along with some other
@@ -258,7 +258,7 @@ class Definition:
       name.
 
     self.parameters:
-      A list of Parameter objects each describing a parameter of the definition.
+      A list of SyscallParameter objects each describing a parameter of the definition.
 
   """
 
@@ -269,7 +269,7 @@ class Definition:
 
       A Definition object has a return type variable, which is a string
       describing the return type of the definition, a name variable, which is
-      the name of the definition and a list of Parameter objects describing all
+      the name of the definition and a list of SyscallParameter objects describing all
       parameters of the definition.
 
     <Arguments>
@@ -324,7 +324,7 @@ class Definition:
       param_string = param_string.replace("* ", "*")
 
       # parse the parameter.
-      parameter = Parameter(param_string)
+      parameter = SyscallParameter(param_string)
 
       # test whether the parameter was parsed completely and correctly.
       assert(str(parameter) == param_string)
