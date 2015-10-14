@@ -324,8 +324,8 @@ def main():
 
     # different views:
     print_definitions1(syscall_definitions_list)
-    # print_definitions2(syscall_definitions_list)
-    # print_definitions3(syscall_definitions_list)
+    print_definitions2(syscall_definitions_list)
+    print_definitions3(syscall_definitions_list)
 
     # pickle syscall_definitions_list
     # pickle_syscall_definitions(syscall_definitions_list)
