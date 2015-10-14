@@ -7,7 +7,7 @@
   Savvas Savvides <savvas@purdue.edu>
 
 <Purpose>
-  Parse the definition of a system call into a SyscallDefinition object.
+  Parse the definition of a system call into a SyscallManual object.
 
   Read the man page of a system call and extract its definition. If a definition
   with the exact system call name is not found then pick one with a similar name
@@ -30,7 +30,7 @@
   Example running this program:
 
   running:
-    python3 SyscallDefinition.py open
+    python SyscallManual.py open
 
   will return the definition of the open syscall which is:
     Syscall Name: open
@@ -49,10 +49,10 @@ from Definition import Definition
 DEBUG = False
 
 
-class SyscallDefinition:
+class SyscallManual:
     """
     <Purpose>
-      A SyscallDefinition is made up of the system call name and its definition 
+      A SyscallManual is made up of the system call name and its definition 
       parsed from its man page.
     
       The reason of having this object in addition to the Definition object is
@@ -91,7 +91,7 @@ class SyscallDefinition:
     
     """
 
-    # types of SyscallDefinitions.
+    # types of SyscallManual.
     NO_MAN_ENTRY = 1
     NOT_FOUND = 2
     UNIMPLEMENTED = 3
@@ -101,15 +101,15 @@ class SyscallDefinition:
     def __init__(self, syscall_name):
         """
         <Purpose>
-          Creates a SyscallDefinition object.
+          Creates a SyscallManual object.
         
-          A SyscallDefinition object has a name, which is the name of the system
-          call, a type, which is defined in terms of the for types given above and
+          A SyscallManual object has a name, which is the name of the system
+          call, a type, which is defined in terms of the four types given above and
           finally, a definition object.
         
         <Arguments>
           syscall_name:
-            The name of the system call for which to create a SyscallDefinition 
+            The name of the system call for which to create a SyscallManual 
             object.
         
         <Exceptions>
@@ -414,10 +414,10 @@ def main():
     import sys
 
     if(len(sys.argv) != 2):
-        print("Usage: python3 " + sys.argv[0] + " <syscall_name>")
+        print("Usage: python " + sys.argv[0] + " <syscall_name>")
         exit()
 
-    syscall_definition = SyscallDefinition(sys.argv[1])
+    syscall_definition = SyscallManual(sys.argv[1])
     print(syscall_definition)
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@
 
   Example running this program:
     run:
-      python3 parse_syscall_definitions.py
+      python parse_syscall_definitions.py
 
     - several different views are provided. read the main method at the end of
     this file and uncomment appropriately.
@@ -32,7 +32,7 @@ import re
 import signal
 import subprocess
 
-import SyscallDefinition
+from SyscallManual import SyscallManual
 
 
 def parse_syscall_names_list():
@@ -147,7 +147,7 @@ def parse_syscall_names_list():
 def get_syscall_definitions_list(syscall_names_list):
     """
     <Purpose>
-      Given a list of syscall names, it returns a list of SyscallDefinition  objects.
+      Given a list of syscall names, it returns a list of SyscallManual  objects.
     
     <Arguments>
       syscall_names_list:
@@ -161,12 +161,12 @@ def get_syscall_definitions_list(syscall_names_list):
     
     <Returns>
       syscall_definitions_list:
-        A list of SyscallDefinition objects.
+        A list of SyscallManual objects.
     
     """
     syscall_definitions_list = []
     for syscall_name in syscall_names_list:
-        syscall_definitions_list.append(SyscallDefinition.SyscallDefinition(syscall_name))
+        syscall_definitions_list.append(SyscallManual(syscall_name))
 
     return syscall_definitions_list
 
@@ -214,7 +214,7 @@ def print_definitions2(syscall_definitions_list):
     print("List of all syscall definitions found")
     print("=====================================")
     for sd in syscall_definitions_list:
-        if(sd.type == SyscallDefinition.SyscallDefinition.FOUND):
+        if(sd.type == SyscallManual.FOUND):
             print(sd.definition)
 
     print()
@@ -237,7 +237,7 @@ def print_definitions3(syscall_definitions_list):
     print("List of all syscall names for which a definition was not found")
     print("==============================================================")
     for sd in syscall_definitions_list:
-        if(sd.type != SyscallDefinition.SyscallDefinition.FOUND):
+        if(sd.type != SyscallManual.FOUND):
             print(sd.name)
 
     print()
@@ -252,12 +252,12 @@ def print_definitions3(syscall_definitions_list):
     print("Syscall names and the reason its definition was not found")
     print("=========================================================")
     for sd in syscall_definitions_list:
-        if(sd.type == SyscallDefinition.SyscallDefinition.FOUND):
+        if(sd.type == SyscallManual.FOUND):
             found.append(sd.name)
             continue
-        elif(sd.type == SyscallDefinition.SyscallDefinition.NO_MAN_ENTRY):
+        elif(sd.type == SyscallManual.NO_MAN_ENTRY):
             no_man.append(sd.name)
-        elif(sd.type == SyscallDefinition.SyscallDefinition.NOT_FOUND):
+        elif(sd.type == SyscallManual.NOT_FOUND):
             not_found.append(sd.name)
         else:    # unimplemented
             unimplemented.append(sd.name)
