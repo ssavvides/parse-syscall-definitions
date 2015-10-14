@@ -26,7 +26,9 @@ man 2 chown32 gives the same page as man chown so for chown32 definition is:
   int chown(const char *path, uid_t owner, gid_t group)
 
 from open man page:
+
   int open(const char *pathname, int flags);
+  
   int open(const char *pathname, int flags, mode_t mode); <-- pick this one
 
 
