@@ -1,4 +1,4 @@
-import definition
+import SyscallParameter
 
 class Definition:
     """
@@ -83,7 +83,7 @@ class Definition:
             param_string = param_string.replace("* ", "*")
 
             # parse the parameter.
-            parameter = definition.SyscallParameter(param_string)
+            parameter = SyscallParameter(param_string)
 
             # test whether the parameter was parsed completely and correctly.
             assert(str(parameter) == param_string)

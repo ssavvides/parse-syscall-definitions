@@ -31,9 +31,8 @@
 import re
 import signal
 import subprocess
-import sys
 
-import definition
+import SyscallDefinition
 
 
 def parse_syscall_names_list():
@@ -167,7 +166,7 @@ def get_syscall_definitions_list(syscall_names_list):
     """
     syscall_definitions_list = []
     for syscall_name in syscall_names_list:
-        syscall_definitions_list.append(definition.SyscallDefinition.SyscallDefinition(syscall_name))
+        syscall_definitions_list.append(SyscallDefinition.SyscallDefinition(syscall_name))
 
     return syscall_definitions_list
 
@@ -215,7 +214,7 @@ def print_definitions2(syscall_definitions_list):
     print("List of all syscall definitions found")
     print("=====================================")
     for sd in syscall_definitions_list:
-        if(sd.type == definition.SyscallDefinition.SyscallDefinition.FOUND):
+        if(sd.type == SyscallDefinition.SyscallDefinition.FOUND):
             print(sd.definition)
 
     print()
@@ -238,7 +237,7 @@ def print_definitions3(syscall_definitions_list):
     print("List of all syscall names for which a definition was not found")
     print("==============================================================")
     for sd in syscall_definitions_list:
-        if(sd.type != definition.SyscallDefinition.SyscallDefinition.FOUND):
+        if(sd.type != SyscallDefinition.SyscallDefinition.FOUND):
             print(sd.name)
 
     print()
@@ -253,12 +252,12 @@ def print_definitions3(syscall_definitions_list):
     print("Syscall names and the reason its definition was not found")
     print("=========================================================")
     for sd in syscall_definitions_list:
-        if(sd.type == definition.SyscallDefinition.SyscallDefinition.FOUND):
+        if(sd.type == SyscallDefinition.SyscallDefinition.FOUND):
             found.append(sd.name)
             continue
-        elif(sd.type == definition.SyscallDefinition.SyscallDefinition.NO_MAN_ENTRY):
+        elif(sd.type == SyscallDefinition.SyscallDefinition.NO_MAN_ENTRY):
             no_man.append(sd.name)
-        elif(sd.type == definition.SyscallDefinition.SyscallDefinition.NOT_FOUND):
+        elif(sd.type == SyscallDefinition.SyscallDefinition.NOT_FOUND):
             not_found.append(sd.name)
         else:    # unimplemented
             unimplemented.append(sd.name)

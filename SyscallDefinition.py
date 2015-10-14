@@ -42,7 +42,7 @@ import re
 import signal
 import subprocess
 
-import definition
+import Definition
 
 
 # controls printing
@@ -250,8 +250,7 @@ class SyscallDefinition:
         all_definitions = []
         while True:
             if len(man_page_lines) == 0:
-                raise Exception("Reached end of man page while looking for " +
-                              "DESCRIPTION line.")
+                raise Exception("Reached end of man page while looking for DESCRIPTION line.")
 
             line = man_page_lines.pop(0).strip()
 
@@ -298,8 +297,7 @@ class SyscallDefinition:
                     line = line[:line.find("/*")] + line[line.rfind("*/") + 2:]
                     line = line.strip()
 
-                # definitions cannot span more than 3 lines so don't join more than 3
-                # lines.
+                # definitions cannot span more than 3 lines so don't join more than 3 lines.
                 times += 1
                 if(times == 3):
                     break
@@ -314,7 +312,7 @@ class SyscallDefinition:
             if DEBUG:
                 print(line)
 
-            all_definitions.append(definition.Definition(line))
+            all_definitions.append(Definition(line))
 
         # We will consume some of these definitions but let's keep the
         # all_definitions variable intact which holds all the definitions parsed
@@ -339,7 +337,7 @@ class SyscallDefinition:
             if(syscall_name.startswith(definitions[def_index].name)):
                 def_index += 1    # increment index so we keep this item
             else:
-                definitions.pop(def_index)    # remove this item, don't incrementing index
+                definitions.pop(def_index)    # remove this item, don't increment index
 
         if(len(definitions) == 0):
             # if there are no definitions left, then we could not find a suitable
@@ -347,8 +345,7 @@ class SyscallDefinition:
             return self.NOT_FOUND, None
 
         elif(len(definitions) == 1):
-            # if there is exactly one definition left, then it must be the one we
-            # need.
+            # if there is exactly one definition left, then it must be the one we need.
             return self.FOUND, definitions[0]
 
         else:
