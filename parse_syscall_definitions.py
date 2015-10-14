@@ -192,8 +192,8 @@ def print_definitions1(syscall_definitions_list):
     print
     print
 
-    print("List of system call definitions:")
-    print("--------------------------------")
+    print "List of system call definitions:"
+    print "--------------------------------"
 
 
     for sd in syscall_definitions_list:
@@ -280,14 +280,14 @@ def print_definitions3(syscall_definitions_list):
     for name in no_man:
         print name
 
-    print()
+    print
 
     print str(len(not_found)) + " definitions not found in their man entry"
     print "-------------------------------------------"
     for name in not_found:
         print name
 
-    print()
+    print
 
     print str(len(unimplemented)) + " system calls identified as unimplemented"
     print "-------------------------------------------"
