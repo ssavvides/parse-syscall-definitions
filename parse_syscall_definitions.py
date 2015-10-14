@@ -328,7 +328,7 @@ def main():
     print_definitions3(syscall_definitions_list)
 
     # pickle syscall_definitions_list
-    # pickle_syscall_definitions(syscall_definitions_list)
+    pickle_syscall_definitions(syscall_definitions_list)
 
 if __name__ == "__main__":
     main()
