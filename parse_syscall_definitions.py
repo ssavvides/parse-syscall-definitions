@@ -187,7 +187,7 @@ def print_definitions1(syscall_definitions_list):
     print"--------------------------"
 
     for sd in syscall_definitions_list:
-        printsd.name
+        print sd.name
 
     print
     print
@@ -197,7 +197,7 @@ def print_definitions1(syscall_definitions_list):
 
 
     for sd in syscall_definitions_list:
-        printsd
+        print sd
         print
 
     print
@@ -325,7 +325,7 @@ def main():
     # different views:
     print_definitions1(syscall_definitions_list)
     print_definitions2(syscall_definitions_list)
-    prinprint_definitions3(syscall_definitions_list)
+    print_definitions3(syscall_definitions_list)
 
     # pickle syscall_definitions_list
     # pickle_syscall_definitions(syscall_definitions_list)
