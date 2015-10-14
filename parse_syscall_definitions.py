@@ -179,29 +179,29 @@ def print_definitions1(syscall_definitions_list):
     definitions.
     """
 
-    print("A total of", len(syscall_definitions_list), "system call names were parsed.")
-    print("")
-    print()
+    print "A total of", len(syscall_definitions_list), "system call names were parsed."
+    print
+    print
 
-    print("List of system call names:")
-    print("--------------------------")
+    print"List of system call names:"
+    print"--------------------------"
 
     for sd in syscall_definitions_list:
-        print(sd.name)
+        printsd.name
 
-    print()
-    print()
+    print
+    print
 
     print("List of system call definitions:")
     print("--------------------------------")
 
 
     for sd in syscall_definitions_list:
-        print(sd)
-        print()
+        printsd
+        print
 
-    print()
-    print()
+    print
+    print
 
 
 
@@ -211,14 +211,14 @@ def print_definitions2(syscall_definitions_list):
     Skips the system calls for which a definition was not found (for any reason).
     """
 
-    print("List of all syscall definitions found")
-    print("=====================================")
+    print "List of all syscall definitions found"
+    print "====================================="
     for sd in syscall_definitions_list:
         if(sd.type == SyscallManual.FOUND):
-            print(sd.definition)
+            print sd.definition
 
-    print()
-    print()
+    print
+    print
 
 
 
@@ -234,14 +234,14 @@ def print_definitions3(syscall_definitions_list):
         - unimplemented system call.
     """
 
-    print("List of all syscall names for which a definition was not found")
-    print("==============================================================")
+    print "List of all syscall names for which a definition was not found"
+    print "=============================================================="
     for sd in syscall_definitions_list:
         if(sd.type != SyscallManual.FOUND):
-            print(sd.name)
+            print sd.name
 
-    print()
-    print()
+    print
+    print
 
     # remember the type of each syscall to provide statistics at the end.
     found = []
@@ -249,8 +249,8 @@ def print_definitions3(syscall_definitions_list):
     not_found = []
     unimplemented = []
 
-    print("Syscall names and the reason its definition was not found")
-    print("=========================================================")
+    print "Syscall names and the reason its definition was not found"
+    print "========================================================="
     for sd in syscall_definitions_list:
         if(sd.type == SyscallManual.FOUND):
             found.append(sd.name)
@@ -262,40 +262,40 @@ def print_definitions3(syscall_definitions_list):
         else:    # unimplemented
             unimplemented.append(sd.name)
 
-        print(sd)
-        print()
+        print sd
+        print
 
-    print()
+    print
 
-    print(str(len(found)) + " syscall definitions found")
-    print("-----------------------------")
+    print str(len(found)) + " syscall definitions found"
+    print "-----------------------------"
     for name in found:
-        print(name)
+        print name
 
-    print()
-    print()
+    print
+    print
 
-    print(str(len(no_man)) + " syscall definitions with no manual entry")
-    print("-------------------------------------------")
+    print str(len(no_man)) + " syscall definitions with no manual entry"
+    print "-------------------------------------------"
     for name in no_man:
-        print(name)
+        print name
 
     print()
 
-    print(str(len(not_found)) + " definitions not found in their man entry")
-    print("-------------------------------------------")
+    print str(len(not_found)) + " definitions not found in their man entry"
+    print "-------------------------------------------"
     for name in not_found:
-        print(name)
+        print name
 
     print()
 
-    print(str(len(unimplemented)) + " system calls identified as unimplemented")
-    print("-------------------------------------------")
+    print str(len(unimplemented)) + " system calls identified as unimplemented"
+    print "-------------------------------------------"
     for name in unimplemented:
-        print(name)
+        print name
 
-    print()
-    print()
+    print
+    print
 
 
 
