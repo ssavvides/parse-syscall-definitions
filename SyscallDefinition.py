@@ -42,7 +42,7 @@ import re
 import signal
 import subprocess
 
-import Definition
+from Definition import Definition
 
 
 # controls printing

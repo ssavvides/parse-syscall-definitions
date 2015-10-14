@@ -1,4 +1,4 @@
-import SyscallParameter
+from SyscallParameter import SyscallParameter
 
 class Definition:
     """
