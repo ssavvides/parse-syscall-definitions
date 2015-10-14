@@ -314,7 +314,7 @@ class SyscallManual:
 
             all_definitions.append(Definition(line))
 
-            if(line.find("mmap")):
+            if("mmap" in line):
                 print "==>" + line
 
         # We will consume some of these definitions but let's keep the
