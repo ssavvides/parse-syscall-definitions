@@ -332,10 +332,9 @@ class SyscallManual:
                  and syscall_name.startswith(definitions[def_index].name[1:])):
                 definitions[def_index].name = definitions[def_index].name[1:]
 
-            # only keep the definitions whose name is the first part of the
-            # syscall_name we care about. Remove all the other definitions. For
-            # example if the syscall_name is "chown32" we want to keep the definition
-            # with name "chown" but not the one with name "fchown".
+            # only keep the definitions whose name is the first part of the syscall_name we care
+            # about. Remove all the other definitions. For example if the syscall_name is "chown32"
+            # we want to keep the definition with name "chown" but not the one with name "fchown".
             if(syscall_name.startswith(definitions[def_index].name)):
                 def_index += 1    # increment index so we keep this item
             else:
@@ -380,13 +379,12 @@ class SyscallManual:
             similar_definitions = []
             for definition in definitions:
                 # m = re.search(r'(*)\d+$', definition.name)
-                m = re.search(r'\d+$', definition.name)
-                if(m):
-                    if(m.group(1) == syscall_name):
-                        similar_definitions.append(definition)
 
-            # from experience there is at most one such definition but let's assert to
-            # be certain.
+                striped_name = definition.name.rstrip("0123456789")
+                if(striped_name == syscall_name):
+                    similar_definitions.append(definition)
+
+            # it seems that there is at most one such definition but let's assert to be certain.
             assert len(similar_definitions) <= 1
 
             if(len(similar_definitions) == 0):
