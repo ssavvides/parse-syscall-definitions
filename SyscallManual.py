@@ -290,7 +290,8 @@ class SyscallManual:
             while(not line.endswith(";")):
                 # join the line with the subsequent line, without removing it from the
                 # man_page_lines, to avoid skipping a definition.
-                line += " " + char_backspace.sub("", man_page_lines[times]).strip()
+                nextLine = char_backspace.sub("", man_page_lines[times]).strip()
+                line += " " + nextLine
 
                 # remove comments from the newly created line.
                 if("/*" in line and "*/" in line):
@@ -301,6 +302,9 @@ class SyscallManual:
                 times += 1
                 if(times == 3):
                     break
+
+            if("mmap" in line):
+                print "==>" + line
 
             # at this point a complete definition must contain at least two
             # parts(separated by whitespace), an opening bracket, a closing bracket
@@ -314,8 +318,7 @@ class SyscallManual:
 
             all_definitions.append(Definition(line))
 
-            if("mmap" in line):
-                print "==>" + line
+
 
         # We will consume some of these definitions but let's keep the
         # all_definitions variable intact which holds all the definitions parsed
