@@ -11,7 +11,7 @@ Tested Under:
 Ubuntu Linux and Gentoo Linux
 
 
-The SyscallDefinition module
+The SyscallManual module
 ============================
 Parses the definition of a system call into a SyscallDefinition object.
 
