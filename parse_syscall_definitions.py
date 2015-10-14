@@ -60,6 +60,10 @@ def parse_syscall_names_list():
 
 
     # read the man page for 'syscalls' into a byte string.
+    #
+    # https://blog.nelhage.com/2010/02/a-very-subtle-bug/
+    # read link for supporting this operation on python v2. python v3 fixes this so the second
+    # argument of check_output is not needed.
     man_page_bytestring = subprocess.check_output(['man', 'syscalls'], preexec_fn=lambda:
                       signal.signal(signal.SIGPIPE, signal.SIG_DFL))
 
@@ -147,8 +151,7 @@ def parse_syscall_names_list():
 def get_syscall_definitions_list(syscall_names_list):
     """
     <Purpose>
-      Given a list of syscall names, it returns a list of SyscallDefinition 
-      objects.
+      Given a list of syscall names, it returns a list of SyscallDefinition  objects.
     
     <Arguments>
       syscall_names_list:
