@@ -315,7 +315,7 @@ class SyscallManual:
             all_definitions.append(Definition(line))
 
             if(line.find("mmap")):
-                print line
+                print "==>" + line
 
         # We will consume some of these definitions but let's keep the
         # all_definitions variable intact which holds all the definitions parsed
