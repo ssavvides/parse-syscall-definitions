@@ -290,8 +290,7 @@ class SyscallManual:
             while(not line.endswith(";")):
                 # join the line with the subsequent line, without removing it from the
                 # man_page_lines, to avoid skipping a definition.
-                nextLine = man_page_lines[times].strip()
-                # nextLine = char_backspace.sub("", man_page_lines[times]).strip()
+                nextLine = char_backspace.sub("", man_page_lines[times]).strip()
                 line += " " + nextLine
 
                 # remove comments from the newly created line.
