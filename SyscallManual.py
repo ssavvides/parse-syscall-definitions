@@ -380,8 +380,9 @@ class SyscallManual:
             for definition in definitions:
                 # m = re.search(r'(*)\d+$', definition.name)
 
-                striped_name = definition.name.rstrip("0123456789")
-                if(striped_name == syscall_name):
+                stripped_name = definition.name.rstrip("0123456789")
+                stripped_syscall_name = syscall_name.rstrip("0123456789")
+                if(stripped_name == stripped_syscall_name):
                     similar_definitions.append(definition)
 
             # it seems that there is at most one such definition but let's assert to be certain.
