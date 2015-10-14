@@ -384,7 +384,8 @@ class SyscallManual:
             # definitions with the same name but without the number at the end.
             similar_definitions = []
             for definition in definitions:
-                m = re.search(r'(*)\d+$', definition.name)
+                # m = re.search(r'(*)\d+$', definition.name)
+                m = re.search(r'\d+$', definition.name)
                 if(m):
                     if(m.group(1) == syscall_name):
                         similar_definitions.append(definition)
