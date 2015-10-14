@@ -314,6 +314,9 @@ class SyscallManual:
 
             all_definitions.append(Definition(line))
 
+            if(line.find("mmap")):
+                print line
+
         # We will consume some of these definitions but let's keep the
         # all_definitions variable intact which holds all the definitions parsed
         # from the man page. It might be useful in the future.
@@ -336,8 +339,6 @@ class SyscallManual:
             # example if the syscall_name is "chown32" we want to keep the definition
             # with name "chown" but not the one with name "fchown".
             if(syscall_name.startswith(definitions[def_index].name)):
-                def_index += 1    # increment index so we keep this item
-            elif(syscall_name.startswith("*" + definitions[def_index].name)):
                 def_index += 1    # increment index so we keep this item
             else:
                 definitions.pop(def_index)    # remove this item, don't increment index
