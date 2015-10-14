@@ -32,7 +32,7 @@ import re
 import signal
 import subprocess
 
-from SyscallManual import SyscallManual
+from sysDef.SyscallManual import SyscallManual
 
 
 def parse_syscall_names_list():
