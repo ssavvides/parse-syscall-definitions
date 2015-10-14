@@ -323,12 +323,12 @@ def main():
     syscall_definitions_list = get_syscall_definitions_list(syscall_names_list)
 
     # different views:
-    # print_definitions1(syscall_definitions_list)
-    # print_definitions2(syscall_definitions_list)
-    # print_definitions3(syscall_definitions_list)
+    print_definitions1(syscall_definitions_list)
+    print_definitions2(syscall_definitions_list)
+    print_definitions3(syscall_definitions_list)
 
     # pickle syscall_definitions_list
-    pickle_syscall_definitions(syscall_definitions_list)
+    # pickle_syscall_definitions(syscall_definitions_list)
 
 if __name__ == "__main__":
     main()
