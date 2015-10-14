@@ -23,6 +23,7 @@ system call then choose the one with the most arguments.
 Examples:
 
 man 2 chown32 gives the same page as man chown so for chown32 definition is:
+
   int chown(const char *path, uid_t owner, gid_t group)
 
 from open man page:
