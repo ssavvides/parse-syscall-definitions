@@ -70,9 +70,6 @@ def parse_syscall_names_list():
     # cast to string and split into a list of lines.
     man_page_lines = man_page_bytestring.decode("utf-8").split("\n")
 
-    print("HHHEEEEEEEEEEEEREEEEEEE")
-    sys.exit()
-
     # a regular expression used to sanitize the read lines. Specifically removes
     # the backspace characters and the character they hide to allow searching for
     # substrings.
