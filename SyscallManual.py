@@ -303,9 +303,6 @@ class SyscallManual:
                 if(times == 3):
                     break
 
-            if("mmap" in line):
-                print "==>" + line
-
             # at this point a complete definition must contain at least two
             # parts(separated by whitespace), an opening bracket, a closing bracket
             # and end with a semi-colon. if any of these requirements are missing,
@@ -317,8 +314,6 @@ class SyscallManual:
                 print(line)
 
             all_definitions.append(Definition(line))
-
-
 
         # We will consume some of these definitions but let's keep the
         # all_definitions variable intact which holds all the definitions parsed
