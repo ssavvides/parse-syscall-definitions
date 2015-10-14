@@ -254,7 +254,7 @@ class SyscallManual:
 
             line = man_page_lines.pop(0).strip()
 
-            # sanitize line
+            # remove backspaces from line
             line = char_backspace.sub("", line)
 
             # when we reach the description line then we can safely stop.
@@ -290,7 +290,7 @@ class SyscallManual:
             while(not line.endswith(";")):
                 # join the line with the subsequent line, without removing it from the
                 # man_page_lines, to avoid skipping a definition.
-                line += " " + man_page_lines[times].strip()
+                line += " " + char_backspace.sub("", man_page_lines[times]).strip()
 
                 # remove comments from the newly created line.
                 if("/*" in line and "*/" in line):
