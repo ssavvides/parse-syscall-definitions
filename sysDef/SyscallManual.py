@@ -328,14 +328,15 @@ class SyscallManual:
 
             # a definition name can sometimes have a "_" in front of it e.g. _exit instead of exit.
             # remove the "_" if what's remaining is similar to the syscall_name.
-            # if(definitions[def_index].name.startswith("_")
-            #     and syscall_name.startswith(definitions[def_index].name[1:])):
-            #    definitions[def_index].name = definitions[def_index].name[1:]
+            if(definitions[def_index].name.startswith("_")
+               and syscall_name.startswith(definitions[def_index].name[1:])):
+                definitions[def_index].name = definitions[def_index].name[1:]
 
             # only keep the definitions whose name is the first part of the syscall_name we care
             # about. Remove all the other definitions. For example if the syscall_name is "chown32"
             # we want to keep the definition with name "chown" but not the one with name "fchown".
-            if(syscall_name.startswith(definitions[def_index].name)):
+            if(syscall_name.startswith(definitions[def_index].name)
+               or syscall_name.startswith("_" + definitions[def_index].name)):
                 def_index += 1    # increment index so we keep this item
             else:
                 definitions.pop(def_index)    # remove this item, don't increment index
