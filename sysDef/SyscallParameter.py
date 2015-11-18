@@ -150,7 +150,7 @@ class SyscallParameter:
                     # if this is not the case then an unexpected format was encountered.
                     raise Exception("Unexpected part in parameter: " + parameter_string)
 
-    def __str__(self):
+    def __repr__(self):
         """
         This should match the original representation of the parameter as it appears
         in the man page it was originally parsed from.
@@ -190,5 +190,52 @@ class SyscallParameter:
         # square brackets come right after the name.
         if(self.array):
             representation += "[]"
+
+        return representation
+
+
+    def __str__(self):
+        """
+        This should match the original representation of the parameter as it appears
+        in the man page it was originally parsed from.
+        """
+
+        representation = "<"
+
+        if(self.ellipsis):
+            representation += "ellipsis, "
+
+
+        if(self.const):
+            representation += "const, "
+
+        if(self.struct):
+            representation += "struct, "
+
+        if(self.union):
+            representation += "union, "
+
+        if(self.enum):
+            representation += "enum, "
+
+        if(self.unsigned):
+            representation += "unsigned, "
+
+        representation += self.type + ", "
+
+        # const pointer comes after the type.
+        if(self.const_pointer):
+            representation += "const-pointer, "
+
+        if(self.pointer):
+            representation += "pointer, "
+
+        representation += "name:" + self.name
+
+        # square brackets come right after the name.
+        if(self.array):
+            representation += "array, "
+
+        representation = representation.strip(", ") + ">"
 
         return representation
