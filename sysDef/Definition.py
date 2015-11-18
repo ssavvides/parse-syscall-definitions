@@ -86,7 +86,7 @@ class Definition:
             parameter = SyscallParameter(param_string)
 
             # test whether the parameter was parsed completely and correctly.
-            assert(str(parameter) == param_string)
+            assert(repr(parameter) == param_string)
 
             self.parameters.append(parameter)
 
