@@ -336,7 +336,7 @@ class SyscallManual:
             # about. Remove all the other definitions. For example if the syscall_name is "chown32"
             # we want to keep the definition with name "chown" but not the one with name "fchown".
             if(syscall_name.startswith(definitions[def_index].name)
-               or "_" + syscall_name.startswith(definitions[def_index].name)):
+               or ("_" + syscall_name).startswith(definitions[def_index].name)):
                 def_index += 1    # increment index so we keep this item
             else:
                 definitions.pop(def_index)    # remove this item, don't increment index
