@@ -102,9 +102,9 @@ class Definition:
         first = True
         for par in self.parameters:
             if(first):
-                parameters_string += str(par)
+                parameters_string += repr(par)
                 first = False
             else:
-                parameters_string += ", " + str(par)
+                parameters_string += ", " + repr(par)
 
         return self.ret_type + " " + self.name + "(" + parameters_string + ")"

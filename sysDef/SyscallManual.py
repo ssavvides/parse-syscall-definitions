@@ -404,7 +404,7 @@ class SyscallManual:
         elif(self.type == self.UNIMPLEMENTED):
             representation += "System call is Unimplemented"
         else:
-            representation += str(self.definition)
+            representation += repr(self.definition)
 
         return representation
 

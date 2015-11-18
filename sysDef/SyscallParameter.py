@@ -176,7 +176,7 @@ class SyscallParameter:
         if(self.unsigned):
             representation += "unsigned "
 
-        representation += self.type + " "
+        representation += str(self.type) + " "
 
         # const pointer comes after the type.
         if(self.const_pointer):
@@ -221,7 +221,7 @@ class SyscallParameter:
         if(self.unsigned):
             representation += "unsigned, "
 
-        representation = representation + self.type + ", "
+        representation += str(self.type) + ", "
 
         # const pointer comes after the type.
         if(self.const_pointer):
