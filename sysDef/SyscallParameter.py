@@ -221,7 +221,7 @@ class SyscallParameter:
         if(self.unsigned):
             representation += "unsigned, "
 
-        representation += self.type + ", "
+        representation = representation + self.type + ", "
 
         # const pointer comes after the type.
         if(self.const_pointer):
